@@ -1,0 +1,9 @@
+---
+# tasks file for fonts
+
+- name: Install fonts
+  become: true
+  ansible.builtin.apt:
+    name: '{{ fonts_packages }}'
+    state: present
+    update_cache: false

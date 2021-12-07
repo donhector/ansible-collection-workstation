@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "redhat.ansible",
+    "editorconfig.editorconfig",
+    "IronGeek.vscode-env",
+    "cschleiden.vscode-github-actions"
+  ]
+}

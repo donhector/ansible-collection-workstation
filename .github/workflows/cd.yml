@@ -1,0 +1,65 @@
+---
+name: 🚀 CD
+
+on:  # yamllint disable-line rule:truthy
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      #############################
+      # Release to Github
+      #############################
+
+      # Since this repo follows the conventional commits specification,
+      # we can use the 'semantic-release' toolset for automatic tagging/releasing
+      # Instead of setting up the runner with node, then npm install semantic-release
+      # and friends, then run it with npx, etc... we opted for a handy github action.
+      # This gh action comes with some plugins pre-installed by default, but not
+      # the one that provides the 'conventionalcommits' preset. Additionally, it does not
+      # come with the plugins for creating a changelog and commiting it inot the repo.
+      # Therefore we need to install those 3 extra plugins.
+      # NOTE: The configuration file for 'semantic-release' is '.releaserc.yml'
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v2
+        with:
+          extra_plugins: |
+            conventional-changelog-conventionalcommits
+            @semantic-release/changelog
+            @semantic-release/git
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_REPO_FULL }}
+
+      #############################
+      # Release to Ansible Galaxy
+      #############################
+
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install Ansible
+        run: pip3 install --no-compile ansible-base
+
+      - name: Show Ansible version
+        run: ansible --version
+
+      - name: Release to Ansible Galaxy
+        run: >-
+          ansible-galaxy role import
+          --api-key ${{ secrets.GALAXY_API_KEY }}
+          ${GITHUB_REPOSITORY%%/*} ${GITHUB_REPOSITORY#*/}

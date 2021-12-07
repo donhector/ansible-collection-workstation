@@ -1,0 +1,80 @@
+---
+name: 📦 CI
+
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    branches:
+     - main
+  workflow_dispatch:
+
+jobs:
+  molecule:
+    name: Molecule
+    runs-on: ubuntu-latest
+    env:
+      PIPENV_VENV_IN_PROJECT: true
+    strategy:
+      matrix:
+        distros:
+          - geerlingguy/docker-centos7-ansible:latest
+          - geerlingguy/docker-centos8-ansible:latest
+          - ghcr.io/artis3n/docker-oraclelinux8-ansible:latest
+          - geerlingguy/docker-amazonlinux2-ansible:latest
+          - ghcr.io/artis3n/docker-ubuntu2104-ansible:latest
+          - ghcr.io/artis3n/docker-ubuntu2010-ansible:latest
+          - geerlingguy/docker-ubuntu2004-ansible:latest
+          - geerlingguy/docker-ubuntu1804-ansible:latest
+          - geerlingguy/docker-ubuntu1604-ansible:latest
+          - geerlingguy/docker-debian11-ansible:latest
+          - geerlingguy/docker-debian10-ansible:latest
+          - geerlingguy/docker-debian9-ansible:latest
+          - geerlingguy/docker-fedora31-ansible:latest
+          # - ghcr.io/artis3n/docker-arch-ansible:latest
+      fail-fast: false
+    steps:
+      - name: Checkout the codebase
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install pipenv
+        run: |
+          pip -V
+          python -m pip install --upgrade pipenv wheel
+
+      - name: Cache pipenv
+        id: cache-pipenv
+        uses: actions/cache@v2.1.7
+        with:
+          #path: ~/.local/share/virtualenvs
+          path: .venv
+          key: ${{ runner.os }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pipenv-
+
+      - name: Install all dependencies
+        if: steps.cache-pipenv.outputs.cache-hit != 'true'
+        run: |
+          pipenv install --deploy --dev
+
+      - name: Molecule test [${{ matrix.distros }}]
+        # make test wraps 'molecule test --all' so it also does linting
+        run: make test
+        env:
+          MOLECULE_DISTRO: "${{ matrix.distros }}"
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+
+      - name: Automerge PR
+        run: >-
+          gh pr merge --auto --merge --delete-branch ${{ github.event.pull_request.number }}
+        env:
+          # If using the default ${{secrets.GITHUB_TOKEN}} merge works but branch is not deleted
+          # had to use a Personal Access Token with full "repo" permissions
+          # See https://github.com/cli/cli/issues/3884#issuecomment-868860269
+          GITHUB_TOKEN: ${{ secrets.PAT_REPO_FULL }}

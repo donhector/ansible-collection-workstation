@@ -1,0 +1,13 @@
+### Ansible
+*.retry
+.vault-pass*
+
+### Pipenv
+.venv
+
+### Python
+*/__pycache__
+*.pyc
+
+### Misc
+.cache

@@ -1,0 +1,6 @@
+---
+# defaults file for fonts
+fonts_packages:
+  - fonts-firacode
+  - fonts-powerline
+  - fonts-cascadia-code

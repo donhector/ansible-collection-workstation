@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+      "*.yml": "ansible",
+      "**/.github/**/*.yml": "yaml"
+  },
+  "python.pythonPath": ".venv/bin/python"
+}
