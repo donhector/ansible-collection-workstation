@@ -1,0 +1,9 @@
+{% if apt_proxy__http_url %}
+Acquire::http::Proxy "{{ apt_proxy__http_url }}";
+{% endif %}
+{% if apt_proxy__https_url %}
+Acquire::https::Proxy "{{ apt_proxy__https_url }}";
+{% endif %}
+{% if apt_proxy__ftp_url %}
+Acquire::ftp::Proxy "{{ apt_proxy__ftp_url }}";
+{% endif %}

@@ -1,0 +1,26 @@
+---
+galaxy_info:
+  role_name: apt_proxy
+  description: apt proxy configuration settings
+  author: donhector
+  company: darkenv.com
+
+  license: MIT
+
+  min_ansible_version: 2.11
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+
+  galaxy_tags:
+    - apt
+    - proxy
+    - ubuntu
+    - debian
+
+dependencies: []
