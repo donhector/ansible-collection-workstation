@@ -1,0 +1,13 @@
+---
+# defaults file for common
+
+common_packages:
+  - curl
+  - wget
+  - git
+  - vim
+  - rsync
+  - unzip
+  - ca-certificates
+  - apt-transport-https
+  - software-properties-common

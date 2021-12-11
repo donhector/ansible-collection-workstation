@@ -1,0 +1,25 @@
+---
+galaxy_info:
+  author: donhector
+  description: common packages installation
+  company: darkenv.com
+  role_name: common
+
+  license: MIT
+
+  min_ansible_version: 2.11
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+
+  galaxy_tags:
+    - common
+    - ubuntu
+    - debian
+
+dependencies: []
