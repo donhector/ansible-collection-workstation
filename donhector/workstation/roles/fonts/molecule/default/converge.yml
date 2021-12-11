@@ -1,14 +1,12 @@
 ---
 - name: Converge
   hosts: all
-  become: true
 
   pre_tasks:
     - name: Update apt cache.
+      become: true
       apt: update_cache=true cache_valid_time=600
       when: ansible_os_family == 'Debian'
 
-  tasks:
-    - name: "Include fonts"
-      include_role:
-        name: "fonts"
+  roles:
+    - role: donhector.fonts

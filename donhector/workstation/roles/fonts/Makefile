@@ -8,7 +8,27 @@ lint:
 test:
 	@molecule test --all
 
-## Run just the role
-.PHONY: run
-run:
+## Spin up an instance
+.PHONY: create
+create:
+	@molecule create
+
+## Converge (run the playbook)
+.PHONY: converge
+converge: create
 	@molecule converge
+
+## Log into the running instance
+.PHONY: login
+login:
+	@molecule login
+
+## Destroy the instance
+.PHONY: destroy
+destroy:
+	@molecule destroy
+
+.PHONY: run
+## Run the playbook locally without molecule
+run:
+	@ansible-playbook -v tests/test.yml -i tests/inventory

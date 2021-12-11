@@ -1,4 +1,4 @@
-Role Name
+fonts
 =========
 
 Install fonts
@@ -11,7 +11,7 @@ None
 Role Variables
 --------------
 
-`fonts_packages`: list of font packages to install from APT
+`fonts_packages`: list of font packages to install
 
 Dependencies
 ------------
