@@ -1,0 +1,24 @@
+---
+
+- name: Create dotenv directories for each shell if they don't exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0775
+  loop:
+    - ~/.shellrc.d
+    - ~/.bashrc.d
+    - ~/.zshrc.d
+
+- name: Enable asdf
+  ansible.builtin.template:
+    src: "asdf.sh.j2"
+    dest: "~/.shellrc.d/asdf.sh"
+    mode: 0755
+
+- name: Enable shell completion file(s)
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "~/{{ item | basename | splitext | last }}rc.d/{{ item | basename }}"
+    mode: 0755
+  loop: "{{ query('fileglob', 'files/asdf_completion.*') }}"

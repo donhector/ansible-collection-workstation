@@ -1,0 +1,25 @@
+---
+galaxy_info:
+  role_name: asdf
+  description: TODO
+  author: donhector
+  company: darkenv.com
+
+  license: MIT
+
+  min_ansible_version: 2.11
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+
+  galaxy_tags:
+    - asdf
+    - ubuntu
+    - debian
+
+dependencies: []

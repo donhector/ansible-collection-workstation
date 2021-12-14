@@ -1,0 +1,33 @@
+---
+
+- name: "install asdf global dependencies with apt"
+  become: true
+  ansible.builtin.apt:
+    name: "{{ asdf_apt_global_deps }}"
+    install_recommends: false
+    cache_valid_time: 3600
+  retries: 3
+  register: apt_deps_result
+  until: apt_deps_result is succeeded
+  when: ansible_os_family == "Debian"
+
+- name: "install asdf global dependencies with yum"
+  become: true
+  ansible.builtin.yum:
+    name: "{{ asdf_yum_global_deps }}"
+  retries: 3
+  register: yum_deps_result
+  until: yum_deps_result is succeeded
+  when: ansible_os_family == "RedHat"
+
+- name: "install asdf from github"
+  ansible.builtin.git:
+    repo: "https://github.com/asdf-vm/asdf.git"
+    dest: "~/.asdf"
+    version: "{{ asdf_version }}"
+
+- name: "set asdfrc"
+  ansible.builtin.template:
+    src: "asdfrc.j2"
+    dest: "~/.asdfrc"
+    mode: 0644

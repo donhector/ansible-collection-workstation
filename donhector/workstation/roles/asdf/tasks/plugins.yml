@@ -1,0 +1,73 @@
+---
+- name: "asdf plugin-add"
+  ansible.builtin.command: 'asdf plugin-add {{ item.name }} {{ item.repository | default() }}'
+  environment:
+    PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.asdf/bin/"
+  args:
+    creates: '.asdf/plugins/{{ item.name }}'
+    chdir: '~'
+  with_items: '{{ asdf_plugins }}'
+  when: asdf_plugins|length > 0
+  ignore_errors: false
+
+- name: "install plugin dependencies with apt"
+  become: true
+  ansible.builtin.apt:
+    name: "{{ item.apt_deps }}"
+    install_recommends: false
+    cache_valid_time: 3600
+  with_items: '{{ asdf_plugins }}'
+  retries: 3
+  register: apt_result
+  until: apt_result is succeeded
+  when: ansible_os_family == "Debian" and asdf_plugins|length > 0
+
+- name: "install plugin dependencies with yum"
+  become: true
+  ansible.builtin.yum:
+    name: "{{ item.yum_deps }}"
+  with_items: '{{ asdf_plugins }}'
+  retries: 3
+  register: yum_result
+  until: yum_result is succeeded
+  when: ansible_os_family == "RedHat" and asdf_plugins|length > 0
+
+- name: "install desired software versions"
+  ansible.builtin.command: 'asdf install {{ item.0.name }} {{ item.1 }}'
+  environment:
+    PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.asdf/bin/"
+  args:
+    creates: ".asdf/installs/{{ item.0.name }}/{{ item.1 }}"
+    chdir: "~"
+  with_subelements:
+    - "{{ asdf_plugins }}"
+    - versions
+    - flags:
+      skip_missing: true
+  when: asdf_plugins|length > 0
+
+- name: "uninstall desired software versions"
+  ansible.builtin.command: 'asdf uninstall {{ item.0.name }} {{ item.1 }}'
+  environment:
+    PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.asdf/bin/"
+  args:
+    removes: ".asdf/installs/{{ item.0.name }}/{{ item.1 }}"
+    chdir: "~"
+  with_subelements:
+    - "{{ asdf_plugins }}"
+    - delete_versions
+    - flags:
+      skip_missing: true
+  when: asdf_plugins|length > 0
+
+- name: "set global software versions"
+  ansible.builtin.command: >
+    asdf global {{ item.name }}
+    {{ item.global | default(item.versions | difference(item.delete_versions|default([])) | sort | first) }}
+  environment:
+    PATH: "{{ ansible_env.PATH }}:{{ ansible_env.HOME }}/.asdf/bin/"
+  args:
+    chdir: "~"
+  when: item.global is defined
+  with_items: "{{ asdf_plugins }}"
+  changed_when: false
