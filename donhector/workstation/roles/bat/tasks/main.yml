@@ -1,0 +1,16 @@
+---
+# tasks file for bat
+
+- name: Check if bat {{ bat_version }} is installed
+  ansible.builtin.shell: dpkg-query --showformat='${Version}' --show bat || true
+  register: bat_check
+  changed_when: false
+
+
+- name: Install bat
+  become: true
+  ansible.builtin.apt:
+    deb: "{{ bat_package_url }}"
+    state: "{{ bat_state }}"
+    install_recommends: false
+  when: bat_version not in bat_check.stdout

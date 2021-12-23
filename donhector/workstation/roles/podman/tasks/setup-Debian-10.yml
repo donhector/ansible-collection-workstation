@@ -1,0 +1,35 @@
+---
+- name: Debian 10 | Install backport repository
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/apt/sources.list
+    regexp: '^deb http://deb.debian.org/debian buster-backports main'
+    line: deb http://deb.debian.org/debian buster-backports main
+
+
+- name: Debian 10 | Install kubic apt key
+  become: true
+  ansible.builtin.apt_key:
+    url: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/Release.key
+    state: present
+
+
+- name: Debian 10 | Install kubic repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_10/ /"
+    state: present
+
+
+# https://github.com/containers/podman/issues/7508#issuecomment-746245356
+- name: Debian 10 | Install libseccomp-dev from debian backport repos
+  become: true
+  ansible.builtin.apt:
+    name: libseccomp-dev
+    default_release: buster-backports
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+  retries: 3
+  register: result
+  until: result is succeeded

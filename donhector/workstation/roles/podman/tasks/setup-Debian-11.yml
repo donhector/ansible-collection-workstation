@@ -1,0 +1,26 @@
+---
+
+# podman is already available in the apt repo, but the version is too old. Thus we use the Kubic repo
+
+- name: Debian 11 | Install kubic apt key
+  become: true
+  ansible.builtin.apt_key:
+    url: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_11/Release.key
+    state: present
+
+
+- name: Debian 11 | Install kubic repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/Debian_11/ /"
+    state: present
+
+
+- name: Debian 11 | Update APT
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  retries: 3
+  register: result
+  until: result is succeeded

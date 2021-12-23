@@ -8,3 +8,6 @@
     state: present
     update_cache: true
     cache_valid_time: 600
+  retries: 3
+  register: result
+  until: result is succeeded

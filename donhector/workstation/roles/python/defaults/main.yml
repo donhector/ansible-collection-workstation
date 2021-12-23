@@ -1,0 +1,12 @@
+---
+# defaults file for python
+
+python_packages:
+  - python3-pip  ## ubuntu2004
+  - python3-dev  ## ubuntu2004
+  - python3-venv ## ubuntu2004
+
+python_modules:
+  - { name: 'pip', state: 'latest', extra_args: '--user' }
+  - { name: 'pipenv', state: 'latest', extra_args: '--user' }
+  - { name: 'cookiecutter', state: 'latest', extra_args: '--user' }

@@ -6,8 +6,14 @@ common_packages:
   - wget
   - git
   - vim
+  - tree
   - rsync
+  - zip
   - unzip
   - ca-certificates
   - apt-transport-https
   - software-properties-common
+  - build-essential
+  - jq
+  - socat
+  - gnupg2

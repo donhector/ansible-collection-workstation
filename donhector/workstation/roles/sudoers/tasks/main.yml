@@ -1,0 +1,9 @@
+---
+# tasks file for sudoers
+
+- name: Allow {{ ansible_user_id }} to have passwordless sudo
+  become: true
+  ansible.builtin.template:
+    src: user.j2
+    dest: /etc/sudoers.d/{{ ansible_user_id }}
+    mode: 0440

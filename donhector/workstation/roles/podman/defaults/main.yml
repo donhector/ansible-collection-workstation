@@ -1,0 +1,13 @@
+---
+# defaults file for podman
+
+podman_packages:
+  - { name: podman, state: present }
+  - { name: buildah, state: present }
+  - { name: skopeo, state: present }
+
+# if you need to upgrade to the latest, use:
+# - { name: podman, state: latest }
+
+# if you need an specific version, use:
+# - { name: podman="100:3.4.2-1", state: present }

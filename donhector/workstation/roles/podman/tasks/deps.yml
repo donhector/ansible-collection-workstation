@@ -1,0 +1,21 @@
+---
+- name: Update APT
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  when: ansible_os_family == "Debian"
+  retries: 3
+  register: result
+  until: result is succeeded
+
+
+- name: Install dependencies
+  become: true
+  ansible.builtin.package:
+    name:
+      - gnupg2
+    state: present
+  retries: 3
+  register: result
+  until: result is succeeded

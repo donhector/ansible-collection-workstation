@@ -1,0 +1,32 @@
+---
+- name: Load OS and distro specific tasks.
+  ansible.builtin.include_tasks: "{{ item }}"
+  with_first_found:
+    - "setup-{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
+    - "setup-{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "setup-{{ ansible_distribution }}.yml"
+    - "setup-{{ ansible_os_family }}.yml"
+
+
+- name: Install Podman packages (from Kubic repo)
+  become: true
+  ansible.builtin.package:
+    name: '{{ item.name }}'
+    state: '{{ item.state | default("present") }}'
+  retries: 3
+  register: result
+  until: result is succeeded
+  loop: '{{ podman_packages }}'
+
+
+- name: Register installed versions
+  ansible.builtin.command: "{{ item.name }} --version"
+  changed_when: false
+  register: versions
+  loop: "{{ podman_packages }}"
+
+
+- name: Show installed versions
+  debug:
+    msg: '{{ item.stdout }}'
+  loop: '{{ versions.results }}'
