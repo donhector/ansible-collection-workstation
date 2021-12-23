@@ -1,0 +1,17 @@
+---
+# tasks file for fd
+
+- name: Check if fd {{ fd_version }} is installed
+  ansible.builtin.shell: dpkg-query --showformat='${Version}' --show fd || true
+  register: fd_check
+  changed_when: false
+
+
+- name: Install fd
+  become: true
+  ansible.builtin.apt:
+    deb: '{{ fd_package_url }}'
+    state: present
+    install_recommends: false
+    force: true
+  when: fd_version not in fd_check.stdout

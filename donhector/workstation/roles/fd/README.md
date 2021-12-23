@@ -1,7 +1,7 @@
-bat
+fd
 =========
 
-Install bat, a cat(1) clone with wings.
+Install fd, a simple, fast and user-friendly alternative to 'find'
 
 Requirements
 ------------
@@ -11,7 +11,7 @@ None
 Role Variables
 --------------
 
-`bat_version`: version to install
+`fd_version`: Version to install
 
 Dependencies
 ------------
@@ -24,7 +24,7 @@ Example Playbook
 ```yaml
     - hosts: servers
       roles:
-         - { role: donhector.bat, bat_version: '0.18.3' }
+         - { role: donhector.fd, fd_version: '8.3.0' }
 ```
 
 License

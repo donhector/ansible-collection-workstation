@@ -1,7 +1,7 @@
-bat
+ripgrep
 =========
 
-Install bat, a cat(1) clone with wings.
+Install ripgrep. Ripgrep recursively searches directories for a regex pattern while respecting your gitignore
 
 Requirements
 ------------
@@ -11,7 +11,7 @@ None
 Role Variables
 --------------
 
-`bat_version`: version to install
+`ripgrep_version`: Version to install
 
 Dependencies
 ------------
@@ -24,7 +24,7 @@ Example Playbook
 ```yaml
     - hosts: servers
       roles:
-         - { role: donhector.bat, bat_version: '0.18.3' }
+         - { role: donhector.ripgrep, ripgrep_version: '13.0.0' }
 ```
 
 License

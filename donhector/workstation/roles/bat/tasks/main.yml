@@ -10,7 +10,8 @@
 - name: Install bat
   become: true
   ansible.builtin.apt:
-    deb: "{{ bat_package_url }}"
-    state: "{{ bat_state }}"
+    deb: '{{ bat_package_url }}'
+    state: present
     install_recommends: false
+    force: true
   when: bat_version not in bat_check.stdout
