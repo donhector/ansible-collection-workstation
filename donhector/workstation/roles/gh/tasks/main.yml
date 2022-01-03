@@ -1,0 +1,19 @@
+---
+# tasks file for gh
+
+- name: Check if gh {{ gh_version }} is installed
+  ansible.builtin.shell: dpkg-query --showformat='${Version}' --show gh || true
+  register: gh_check
+  changed_when: false
+
+
+- name: Install gh
+  become: true
+  ansible.builtin.apt:
+    deb: '{{ gh_package_url }}'
+    state: present
+    install_recommends: false
+    force: true
+  when: gh_version not in gh_check.stdout
+
+# TODO: completions

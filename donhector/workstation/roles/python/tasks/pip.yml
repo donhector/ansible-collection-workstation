@@ -1,0 +1,24 @@
+---
+# Install python_pip_packages
+
+- name: Ensure python_pip_modules are installed.
+  ansible.builtin.pip:
+    name: "{{ item.name | default(item) }}"
+    version: "{{ item.version | default(omit) }}"
+    virtualenv: "{{ item.virtualenv | default(omit) }}"
+    state: "{{ item.state | default(omit) }}"
+    extra_args: "{{ item.extra_args | default(omit) }}"
+  loop: "{{ python_pip_modules }}"
+
+
+- name: Register user pip version
+  ansible.builtin.command: pip -V
+  environment:
+    PATH: "{{ ansible_env.HOME }}/.local/bin/:{{ ansible_env.PATH }}"
+  changed_when: false
+  register: user_pip_version
+
+
+- name: Show user pip version
+  debug:
+    msg: "User pip version: {{ user_pip_version.stdout }}"

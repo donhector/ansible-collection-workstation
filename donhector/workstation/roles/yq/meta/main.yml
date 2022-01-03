@@ -1,7 +1,7 @@
 ---
 galaxy_info:
-  role_name: asdf
-  description: Extendable version manager with support for Ruby, Node.js, Elixir, Erlang & more
+  role_name: yq
+  description: yq is a portable command-line YAML processor
   author: donhector
   company: darkenv.com
 
@@ -18,7 +18,7 @@ galaxy_info:
         - all
 
   galaxy_tags:
-    - asdf
+    - yq
     - ubuntu
     - debian
 

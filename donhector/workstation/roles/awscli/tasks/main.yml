@@ -23,18 +23,12 @@
   when: unzip_present.rc != 0
 
 
-- name: Download awscli
-  ansible.builtin.get_url:
-    url: '{{ awscli_download_url }}'
-    dest: /tmp/awscliv2.zip
-    mode: 0644
-
-
 - name: Unzip awscli
   ansible.builtin.unarchive:
-    src: /tmp/awscliv2.zip
-    dest: /tmp
     remote_src: true
+    src: '{{ awscli_download_url }}'
+    dest: /tmp/
+    mode: 0755
 
 
 - name: Install awscli
@@ -56,14 +50,5 @@
   ansible.builtin.debug:
     var: aws_version.stdout
 
-
-## Commenting out as it breaks idempotency
-# - name: Cleanup
-#   ansible.builtin.file:
-#     path: '{{ item }}'
-#     state: absent
-#   loop:
-#     - /tmp/awscliv2.zip
-#     - /tmp/aws
 
 # TODO. Enable completions for bash and zsh

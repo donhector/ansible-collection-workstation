@@ -1,0 +1,31 @@
+---
+# Install python system packages
+
+- name: Update apt cache.
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 86400
+    install_recommends: false
+  when: ansible_os_family == 'Debian'
+
+
+- name: Install OS packages
+  become: true
+  ansible.builtin.package:
+    name: '{{ python_packages }}'
+    state: present
+  retries: 3
+  register: apt_result
+  until: apt_result is succeeded
+
+
+- name: Register system pip version
+  ansible.builtin.command: pip -V
+  changed_when: false
+  register: system_pip_version
+
+
+- name: Show system pip version
+  debug:
+    msg: "System pip version: {{ system_pip_version.stdout }}"

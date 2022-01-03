@@ -1,7 +1,7 @@
 ---
 galaxy_info:
-  role_name: asdf
-  description: Extendable version manager with support for Ruby, Node.js, Elixir, Erlang & more
+  role_name: gh
+  description: Install gh, the Github cli tool
   author: donhector
   company: darkenv.com
 
@@ -18,7 +18,7 @@ galaxy_info:
         - all
 
   galaxy_tags:
-    - asdf
+    - gh
     - ubuntu
     - debian
 

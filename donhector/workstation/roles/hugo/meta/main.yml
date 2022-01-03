@@ -1,7 +1,7 @@
 ---
 galaxy_info:
-  role_name: asdf
-  description: Extendable version manager with support for Ruby, Node.js, Elixir, Erlang & more
+  role_name: hugo
+  description: The world's fastest framework for building websites.
   author: donhector
   company: darkenv.com
 
@@ -10,15 +10,21 @@ galaxy_info:
   min_ansible_version: 2.11
 
   platforms:
-    - name: Ubuntu
+    - name: EL
+      versions:
+        - all
+    - name: Fedora
       versions:
         - all
     - name: Debian
       versions:
         - all
+    - name: Ubuntu
+      versions:
+        - all
 
   galaxy_tags:
-    - asdf
+    - hugo
     - ubuntu
     - debian
 

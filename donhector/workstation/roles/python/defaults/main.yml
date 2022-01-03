@@ -6,7 +6,12 @@ python_packages:
   - python3-dev  ## ubuntu2004
   - python3-venv ## ubuntu2004
 
-python_modules:
+python_pip_modules:
   - { name: 'pip', state: 'latest', extra_args: '--user' }
-  - { name: 'pipenv', state: 'latest', extra_args: '--user' }
-  - { name: 'cookiecutter', state: 'latest', extra_args: '--user' }
+  - { name: 'pipx', state: 'latest', extra_args: '--user' }
+
+python_pipx_modules:
+  - { name: 'pipenv', state: 'present' }
+  - { name: 'cookiecutter', state: 'present' }
+
+python_poetry_version: '1.1.12'
