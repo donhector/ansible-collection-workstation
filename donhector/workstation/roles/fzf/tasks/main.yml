@@ -1,0 +1,48 @@
+---
+# tasks file for fzf
+
+- name: Check if fzf {{ fzf_version }} is present
+  shell: fzf --version || true
+  register: fzf_check
+  changed_when: false
+
+- name: Setup fzf {{ fzf_version }}
+  become: true
+  when: >
+    fzf_check.stdout_lines | length == 0
+    or fzf_version not in fzf_check.stdout
+  block:
+    - name: Install fzf {{ fzf_version }}
+      ansible.builtin.unarchive:
+        remote_src: true
+        src: '{{ fzf_dl_url }}'
+        dest: '{{ fzf_path | dirname }}'
+        extra_opts:
+          - fzf  # Extract just the binry file (e.g. 'tar -x -f file.tgz fzf')
+        mode: 0755
+
+    - name: Install fzf-tmux
+      ansible.builtin.get_url:
+        url: '{{ fzf_tmux_dl_url }}'
+        dest: '{{ fzf_tmux_path | dirname }}'
+        force: true
+        mode: 0755
+
+    - name: Create man page directory
+      file:
+        path: '{{ fzf_man_path | dirname }}'
+        state: directory
+
+    - name: Install fzf man page
+      get_url:
+        url: '{{ fzf_man_dl_url }}'
+        dest: '{{ fzf_man_path }}'
+        force: true
+        mode: 0644
+
+    - name: Install fzf-tmux man page
+      get_url:
+        url: '{{ fzf_tmux_man_dl_url }}'
+        dest: '{{ fzf_tmux_man_path }}'
+        force: true
+        mode: 0644
