@@ -1,0 +1,8 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    - role: donhector.common
+    - role: donhector.sudoers
+    - role: donhector.fonts
+    # Add more roles here ...

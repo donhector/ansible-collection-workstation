@@ -18,3 +18,4 @@ common_packages:
   - socat
   - gnupg2
   - bash-completion
+  - neofetch

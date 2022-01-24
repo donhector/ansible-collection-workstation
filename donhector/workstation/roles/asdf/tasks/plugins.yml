@@ -1,4 +1,5 @@
 ---
+
 - name: "asdf plugin-add"
   ansible.builtin.command: 'asdf plugin-add {{ item.name }} {{ item.repository | default() }}'
   environment:
@@ -9,6 +10,7 @@
   with_items: '{{ asdf_plugins }}'
   when: asdf_plugins|length > 0
   ignore_errors: false
+
 
 - name: "install plugin dependencies with apt"
   become: true
@@ -22,6 +24,7 @@
   until: apt_result is succeeded
   when: ansible_os_family == "Debian" and asdf_plugins|length > 0
 
+
 - name: "install plugin dependencies with yum"
   become: true
   ansible.builtin.yum:
@@ -31,6 +34,7 @@
   register: yum_result
   until: yum_result is succeeded
   when: ansible_os_family == "RedHat" and asdf_plugins|length > 0
+
 
 - name: "install desired software versions"
   ansible.builtin.command: 'asdf install {{ item.0.name }} {{ item.1 }}'
@@ -46,6 +50,7 @@
       skip_missing: true
   when: asdf_plugins|length > 0
 
+
 - name: "uninstall desired software versions"
   ansible.builtin.command: 'asdf uninstall {{ item.0.name }} {{ item.1 }}'
   environment:
@@ -59,6 +64,7 @@
     - flags:
       skip_missing: true
   when: asdf_plugins|length > 0
+
 
 - name: "set global software versions"
   ansible.builtin.command: >

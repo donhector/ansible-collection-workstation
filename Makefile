@@ -4,23 +4,12 @@ define hr
 	@printf '%.s─' $$(seq 1 $$(tput cols))
 endef
 
-ROLESDIR := $(abspath ./donhector/workstation/roles)
-ROLES = $(shell find $(ROLESDIR) -maxdepth 1 -mindepth 1)
+# ROLESDIR := $(abspath ./donhector/workstation/roles)
+# ROLES = $(shell find $(ROLESDIR) -maxdepth 1 -mindepth 1 -type d)
 
-.PHONY: subdirs $(ROLES)
-subdirs: $(ROLES)
-
-hector:
-	@echo $(ROLESDIR)
-	@echo $(ROLES)
-
-
-$(ROLES):
-	$(MAKE) -C $@
-
-
-
-
+# hector:
+# 	@echo $(ROLESDIR)
+# 	@echo $(ROLES)
 
 all: install security test
 
@@ -59,8 +48,8 @@ security:
 	@pipenv check
 
 ## Run just the role
-run:
+converge:
 	$(call hr)
 	@pipenv run molecule converge
 
-.PHONY: all install lint test update clean security run
+.PHONY: all install lint test update clean security converge

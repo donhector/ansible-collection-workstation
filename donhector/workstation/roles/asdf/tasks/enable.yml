@@ -10,11 +10,13 @@
     - ~/.bashrc.d
     - ~/.zshrc.d
 
+
 - name: Enable asdf
   ansible.builtin.template:
     src: "asdf.sh.j2"
     dest: "~/.shellrc.d/asdf.sh"
     mode: 0755
+
 
 - name: Enable shell completion file(s)
   ansible.builtin.copy:

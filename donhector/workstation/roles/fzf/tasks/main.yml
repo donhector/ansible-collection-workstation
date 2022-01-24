@@ -15,34 +15,35 @@
     - name: Install fzf {{ fzf_version }}
       ansible.builtin.unarchive:
         remote_src: true
-        src: '{{ fzf_dl_url }}'
-        dest: '{{ fzf_path | dirname }}'
+        src: "{{ fzf_dl_url }}"
+        dest: "{{ fzf_path | dirname }}"
         extra_opts:
-          - fzf  # Extract just the binry file (e.g. 'tar -x -f file.tgz fzf')
+          - fzf # Extract just the binry file (e.g. 'tar -x -f file.tgz fzf')
         mode: 0755
 
     - name: Install fzf-tmux
       ansible.builtin.get_url:
-        url: '{{ fzf_tmux_dl_url }}'
-        dest: '{{ fzf_tmux_path | dirname }}'
+        url: "{{ fzf_tmux_dl_url }}"
+        dest: "{{ fzf_tmux_path | dirname }}"
         force: true
         mode: 0755
 
     - name: Create man page directory
       file:
-        path: '{{ fzf_man_path | dirname }}'
+        path: "{{ fzf_man_path | dirname }}"
         state: directory
+        mode: 0755
 
     - name: Install fzf man page
       get_url:
-        url: '{{ fzf_man_dl_url }}'
-        dest: '{{ fzf_man_path }}'
+        url: "{{ fzf_man_dl_url }}"
+        dest: "{{ fzf_man_path }}"
         force: true
         mode: 0644
 
     - name: Install fzf-tmux man page
       get_url:
-        url: '{{ fzf_tmux_man_dl_url }}'
-        dest: '{{ fzf_tmux_man_path }}'
+        url: "{{ fzf_tmux_man_dl_url }}"
+        dest: "{{ fzf_tmux_man_path }}"
         force: true
         mode: 0644
