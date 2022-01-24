@@ -11,8 +11,10 @@ endef
 # 	@echo $(ROLESDIR)
 # 	@echo $(ROLES)
 
+.PHONY: all
 all: install security test
 
+.PHONY: install
 install:
 	$(call hr)
 	@command -v python3 2>&1 >/dev/null || echo "Please install python3!"
@@ -22,34 +24,62 @@ install:
 	@[ -f .git/hooks/pre-commit ] || pipenv run pre-commit install
 
 ## remove our pipenv environment
+.PHONY: clean
 clean:
 	$(call hr)
 	@pipenv --rm
 
-## only run the linter, no testing
-lint:
-	$(call hr)
-	@pipenv run molecule lint
-
-## molecule test already does linting
-test:
-	$(call hr)
-	@pipenv run molecule test --all
-
 ## Update pipenv dependencies along with pre-commit
+.PHONY: update
 update:
 	$(call hr)
 	@pipenv update --dev
 	@pipenv run pre-commit autoupdate
 
 ## Test for known vulnerabilities in our pipenv environment
+.PHONY: security
 security:
 	$(call hr)
 	@pipenv check
 
-## Run just the role
-converge:
+### Ansible/Molecule targets
+
+## only run the linter, no testing
+.PHONY: lint
+lint:
+	$(call hr)
+	@pipenv run molecule lint
+
+
+## molecule test already does linting
+.PHONY: test
+test:
+	$(call hr)
+	@pipenv run molecule test --all
+
+
+## Spin up the instance(s)
+.PHONY: create
+create:
+	$(call hr)
+	@pipenv run molecule create
+
+
+## Converge (run the playbook)
+.PHONY: converge
+converge: create
 	$(call hr)
 	@pipenv run molecule converge
 
-.PHONY: all install lint test update clean security converge
+## Log into the running instance
+.PHONY: login
+login:
+	$(call hr)
+	@pipenv run molecule login
+
+
+## Destroy the instance
+.PHONY: destroy
+destroy:
+	$(call hr)
+	@pipenv run molecule destroy
