@@ -1,10 +1,10 @@
 ---
 name: 📦 CI
 
-on:  # yamllint disable-line rule:truthy
+on: # yamllint disable-line rule:truthy
   pull_request:
     branches:
-     - main
+      - main
   workflow_dispatch:
 
 jobs:
@@ -38,7 +38,7 @@ jobs:
       - name: Set up Python 3.
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
+          python-version: "3.9"
 
       - name: Install pipenv
         run: |
@@ -63,10 +63,11 @@ jobs:
       - name: Molecule test [${{ matrix.distros }}]
         # make test wraps 'molecule test --all' so it also does linting
         run: make test
+        working-directory: donhector/workstation
         env:
           MOLECULE_DISTRO: "${{ matrix.distros }}"
-          PY_COLORS: '1'
-          ANSIBLE_FORCE_COLOR: '1'
+          PY_COLORS: "1"
+          ANSIBLE_FORCE_COLOR: "1"
 
       - name: Automerge PR
         run: >-
