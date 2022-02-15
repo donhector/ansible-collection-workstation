@@ -1,7 +1,5 @@
 ---
 - name: Converge
   hosts: all
-  tasks:
-    - name: "Test role"
-      ansible.builtin.include_role:
-        name: hugo
+  roles:
+    - role: donhector.workstation.hugo
