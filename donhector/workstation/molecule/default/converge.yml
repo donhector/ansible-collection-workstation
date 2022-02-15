@@ -1,0 +1,37 @@
+---
+- name: Converge
+  hosts: all
+  roles:
+    # - role: common
+    - role: sudoers
+    # - role: fonts
+    # - role: apt_proxy
+    # - role: asdf
+    # - role: awscli
+    # - role: bat
+    # - role: fd
+    # - role: fzf
+    # - role: gh
+    # - role: hugo
+    # - role: jq
+    # - role: python
+    # - role: ripgrep
+    # - role: yq
+    # - role: podman
+    # - role: docker
+
+  collections: donhector.workstation
+
+  # tasks:
+  #   # - name: "Test role"
+  #   #   ansible.builtin.include_role:
+  #   #     name: jq
+
+  #   - name: Test roles
+  #     include_role:
+  #       name: "{{ role }}"
+  #     loop:
+  #       - jq
+  #       - hugo
+  #     loop_control:
+  #       loop_var: role

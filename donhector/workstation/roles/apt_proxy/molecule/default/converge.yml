@@ -2,4 +2,4 @@
 - name: Converge
   hosts: all
   roles:
-    - role: donhector.apt_proxy
+    - role: donhector.workstation.apt_proxy

@@ -2,4 +2,4 @@
 - name: Converge
   hosts: all
   roles:
-    - role: donhector.podman
+    - role: donhector.workstation.podman
