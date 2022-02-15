@@ -13,7 +13,7 @@
     # - role: fzf
     # - role: gh
     # - role: hugo
-    # - role: jq
+    - role: jq
     # - role: python
     # - role: ripgrep
     # - role: yq
