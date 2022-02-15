@@ -4,15 +4,43 @@
 asdf_version: "v0.9.0"
 asdf_legacy_version_file: "yes"
 
+asdf_apt_global_deps:
+  [
+    "unzip",
+    "git",
+    "curl",
+    "autoconf",
+    "automake",
+    "gcc",
+    "g++",
+    "make",
+    "patch",
+    "pkg-config",
+    "binutils",
+    "libtool",
+    "bison",
+    "libreadline-dev",
+  ]
 
-asdf_apt_global_deps: ["unzip", "git", "curl", "autoconf", "automake", "gcc", "g++", "make",
-                      "patch", "pkg-config", "binutils", "libtool", "bison", "libreadline-dev"]
-
-asdf_yum_global_deps: ["unzip", "git", "curl", "autoconf", "automake", "gcc", "gcc-c++", "make",
-                      "patch", "pkgconfig", "binutils", "libtool", "bison", "readline-devel"]
+asdf_yum_global_deps:
+  [
+    "unzip",
+    "git",
+    "curl",
+    "autoconf",
+    "automake",
+    "gcc",
+    "gcc-c++",
+    "make",
+    "patch",
+    "pkgconfig",
+    "binutils",
+    "libtool",
+    "bison",
+    "readline-devel",
+  ]
 
 asdf_plugins:
-
   - name: "python"
     repository: "https://github.com/danhper/asdf-python"
     versions:
@@ -20,11 +48,40 @@ asdf_plugins:
       - 2.7.18
     delete_versions: []
     global: 3.10.1
-    apt_deps: ["make", "build-essential", "libssl-dev", "zlib1g-dev", "libbz2-dev",
-               "libreadline-dev", "libsqlite3-dev", "wget", "curl", "llvm", "libncursesw5-dev",
-               "xz-utils", "tk-dev", "libxml2-dev", "libxmlsec1-dev", "libffi-dev", "liblzma-dev"]
-    yum_deps: ["gcc", "zlib-devel", "bzip2", "bzip2-devel", "readline-devel", "sqlite",
-                       "sqlite-devel", "openssl-devel", "tk-devel", "libffi-devel", "xz-devel"]
+    apt_deps:
+      [
+        "make",
+        "build-essential",
+        "libssl-dev",
+        "zlib1g-dev",
+        "libbz2-dev",
+        "libreadline-dev",
+        "libsqlite3-dev",
+        "wget",
+        "curl",
+        "llvm",
+        "libncursesw5-dev",
+        "xz-utils",
+        "tk-dev",
+        "libxml2-dev",
+        "libxmlsec1-dev",
+        "libffi-dev",
+        "liblzma-dev",
+      ]
+    yum_deps:
+      [
+        "gcc",
+        "zlib-devel",
+        "bzip2",
+        "bzip2-devel",
+        "readline-devel",
+        "sqlite",
+        "sqlite-devel",
+        "openssl-devel",
+        "tk-devel",
+        "libffi-devel",
+        "xz-devel",
+      ]
 
   - name: "golang"
     repository: "https://github.com/kennyp/asdf-golang"
@@ -39,14 +96,35 @@ asdf_plugins:
     repository: "https://github.com/asdf-vm/asdf-ruby"
     versions:
       - 3.0.3
-      - 2.7.5
     delete_versions: []
     global: 3.0.3
-    apt_deps:  ["autoconf", "bison", "build-essential", "libssl-dev", "libyaml-dev",
-                "libreadline6-dev", "zlib1g-dev", "libncurses5-dev", "libffi-dev",
-                "libgdbm6", "libgdbm-dev", "libdb-dev"]
-    yum_deps: ["gcc-6", "bzip2", "openssl-devel", "libyaml-devel", "libffi-devel",
-               "readline-devel", "zlib-devel", "gdbm-devel", "ncurses-devel"]
+    apt_deps:
+      [
+        "autoconf",
+        "bison",
+        "build-essential",
+        "libssl-dev",
+        "libyaml-dev",
+        "libreadline6-dev",
+        "zlib1g-dev",
+        "libncurses5-dev",
+        "libffi-dev",
+        "libgdbm6",
+        "libgdbm-dev",
+        "libdb-dev",
+      ]
+    yum_deps:
+      [
+        "gcc-6",
+        "bzip2",
+        "openssl-devel",
+        "libyaml-devel",
+        "libffi-devel",
+        "readline-devel",
+        "zlib-devel",
+        "gdbm-devel",
+        "ncurses-devel",
+      ]
 
   - name: "nodejs"
     repository: "https://github.com/asdf-vm/asdf-nodejs"

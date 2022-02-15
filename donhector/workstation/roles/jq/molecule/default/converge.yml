@@ -1,5 +1,10 @@
 ---
 - name: Converge
   hosts: all
-  roles:
-    - role: donhector.jq
+  # roles:
+  #   - role: jq
+
+  tasks:
+    - name: "Test role"
+      ansible.builtin.include_role:
+        name: jq
