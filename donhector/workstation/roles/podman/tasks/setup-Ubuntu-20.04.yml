@@ -1,0 +1,23 @@
+---
+- name: Ubuntu 20.04 | Install kubic apt key
+  become: true
+  ansible.builtin.apt_key:
+    url: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04/Release.key
+    state: present
+
+
+- name: Ubuntu 20.04 | Install kubic repository
+  become: true
+  ansible.builtin.apt_repository:
+    repo: "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_20.04/ /"
+    state: present
+
+
+- name: Ubuntu 20.04 | Update APT
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  retries: 3
+  register: result
+  until: result is succeeded

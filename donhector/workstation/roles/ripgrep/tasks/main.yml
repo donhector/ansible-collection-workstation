@@ -1,0 +1,17 @@
+---
+# tasks file for ripgrep
+
+- name: Check if ripgrep {{ ripgrep_version }} is installed
+  ansible.builtin.shell: dpkg-query --showformat='${Version}' --show ripgrep || true
+  register: ripgrep_check
+  changed_when: false
+
+
+- name: Install ripgrep
+  become: true
+  ansible.builtin.apt:
+    deb: '{{ ripgrep_package_url }}'
+    state: present
+    install_recommends: false
+    force: true
+  when: ripgrep_version not in ripgrep_check.stdout

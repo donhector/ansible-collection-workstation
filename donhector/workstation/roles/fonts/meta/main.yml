@@ -1,9 +1,9 @@
 ---
 galaxy_info:
-  author: donhector
-  description: font installation
-  company: darkenv.com
   role_name: fonts
+  description: font installation
+  author: donhector
+  company: darkenv.com
 
   license: MIT
 

@@ -1,0 +1,21 @@
+---
+
+- name: Create user config directory
+  ansible.builtin.file:
+    path: "~/.config/containers"
+    state: directory
+    mode: 0755
+
+
+- name: Deploy registries.conf
+  ansible.builtin.template:
+    src: registries.conf.j2
+    dest: "~/.config/containers/registries.conf"
+    mode: 0644
+
+
+- name: Deploy containers.conf)
+  ansible.builtin.template:
+    src: containers.conf.j2
+    dest: "~/.config/containers/containers.conf"
+    mode: 0644

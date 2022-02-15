@@ -1,0 +1,9 @@
+---
+# defaults file for hugo
+
+hugo_version: 0.91.2
+
+hugo_dl_url: >-
+  https://github.com/gohugoio/hugo/releases/download/v{{ hugo_version }}/hugo_extended_{{ hugo_version }}_Linux-64bit.tar.gz
+
+hugo_path: /usr/local/bin/hugo

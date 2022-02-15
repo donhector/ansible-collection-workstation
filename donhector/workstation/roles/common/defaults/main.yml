@@ -1,0 +1,21 @@
+---
+# defaults file for common
+
+common_packages:
+  - curl
+  - wget
+  - git
+  - vim
+  - tree
+  - rsync
+  - zip
+  - unzip
+  - ca-certificates
+  - apt-transport-https
+  - software-properties-common
+  - build-essential
+  - jq
+  - socat
+  - gnupg2
+  - bash-completion
+  - neofetch

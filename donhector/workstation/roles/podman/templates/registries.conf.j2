@@ -1,0 +1,7 @@
+{{ ansible_managed | comment }}
+
+unqualified-search-registries = ['docker.io', 'quay.io', 'registry.fedoraproject.org', 'registry.access.redhat.com', 'registry.centos.org']
+
+[[registry]]
+location="localhost:5000"
+insecure=true

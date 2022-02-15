@@ -1,0 +1,23 @@
+---
+# tasks file for podman
+
+- name: Install dependencies
+  ansible.builtin.include_tasks: deps.yml
+
+
+- name: Install podman
+  ansible.builtin.include_tasks: setup.yml
+
+
+- name: Configure podman
+  ansible.builtin.include_tasks: config.yml
+
+
+# - name: Start podman.service
+#   become: true
+#   ansible.builtin.service:
+#     name: "podman.service"
+#     state: "started"
+#     enabled: true
+#   changed_when: false
+#   failed_when: false

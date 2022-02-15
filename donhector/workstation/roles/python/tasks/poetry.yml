@@ -1,0 +1,26 @@
+---
+## Install Poetry
+
+- name: Check if poetry is installed
+  ansible.builtin.shell: poetry --version || true
+  register: poetry_check
+  changed_when: false
+
+
+- name: Setup poetry {{ python_poetry_version }}
+  block:
+    - name: Download poetry installer
+      ansible.builtin.get_url:
+        url: https://install.python-poetry.org
+        dest: /tmp/install-poetry.py
+        mode: 0644
+        timeout: 20
+        force: true
+    - name: Install poetry
+      ansible.builtin.command: "python3 /tmp/install-poetry.py"
+      changed_when: false
+  when: >
+    poetry_check.stdout_lines | length == 0
+    or python_poetry_version not in poetry_check.stdout_lines[0]
+
+## TODO: Completions See https://github.com/python-poetry/poetry#enable-tab-completion-for-bash-fish-or-zsh

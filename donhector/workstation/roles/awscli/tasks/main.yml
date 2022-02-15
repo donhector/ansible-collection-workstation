@@ -1,0 +1,54 @@
+---
+# tasks file for awscli
+
+- name: Check if unzip is present
+  ansible.builtin.command: which unzip
+  register: unzip_present
+  ignore_errors: true
+  changed_when: false
+
+
+- name: Install unzip
+  block:
+    - name: Update apt
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+      when: ansible_os_family == 'Debian'
+
+    - name: Install required OS packages
+      ansible.builtin.package:
+        name: unzip
+        state: present
+  when: unzip_present.rc != 0
+
+
+- name: Unzip awscli
+  ansible.builtin.unarchive:
+    remote_src: true
+    src: '{{ awscli_download_url }}'
+    dest: /tmp/
+    mode: 0755
+
+
+- name: Install awscli
+  become: true
+  ansible.builtin.command:
+    cmd: ./install {{ (awscli_upgrade == true) | ternary('--update', None) }}
+  args:
+    chdir: /tmp/aws
+    creates: /usr/local/aws-cli
+
+
+- name: Get awscli version
+  ansible.builtin.command: aws --version
+  register: aws_version
+  changed_when: false
+
+
+- name: Print awscli version
+  ansible.builtin.debug:
+    var: aws_version.stdout
+
+
+# TODO. Enable completions for bash and zsh

@@ -3,4 +3,4 @@
   vars:
     ansible_connection: local
   roles:
-    - {role: fonts, become: true}
+    - { role: donhector.fonts }

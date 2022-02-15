@@ -1,0 +1,11 @@
+---
+# tasks file for asdf
+
+- name: "install asdf"
+  import_tasks: "install.yml"
+
+- name: "install plugins"
+  import_tasks: "plugins.yml"
+
+- name: "enable asdf and completions"
+  import_tasks: "enable.yml"

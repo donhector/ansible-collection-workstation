@@ -1,0 +1,11 @@
+---
+# tasks file for apt_proxy
+
+- name: Configure APT to use HTTP/HTTPS proxy
+  become: true
+  ansible.builtin.template:
+    src: 'proxy.conf.j2'
+    dest: '/etc/apt/apt.conf.d/{{ apt_proxy__filename }}'
+    mode: 0644
+  when: ansible_os_family == 'Debian' and
+    (apt_proxy__http_url or apt_proxy__https_url or apt_proxy__ftp_url)

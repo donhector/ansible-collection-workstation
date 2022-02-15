@@ -1,0 +1,25 @@
+---
+galaxy_info:
+  role_name: gh
+  description: Install gh, the Github cli tool
+  author: donhector
+  company: darkenv.com
+
+  license: MIT
+
+  min_ansible_version: 2.11
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+
+  galaxy_tags:
+    - gh
+    - ubuntu
+    - debian
+
+dependencies: []

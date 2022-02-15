@@ -1,0 +1,12 @@
+---
+# Install pipx modules
+
+- name: Ensure python_pipx_modules are installed.
+  community.general.pipx:
+    name: "{{ item.name | default(item) }}"
+    state: "{{ item.state | default(omit) }}"
+  environment:
+    PATH: "{{ ansible_env.HOME }}/.local/bin/:{{ ansible_env.PATH }}"
+  loop: "{{ python_pipx_modules }}"
+
+## TODO: pipx completions. See https://python-poetry.org/docs/master/#enable-tab-completion-for-bash-fish-or-zsh

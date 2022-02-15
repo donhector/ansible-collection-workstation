@@ -1,0 +1,25 @@
+---
+galaxy_info:
+  role_name: yq
+  description: yq is a portable command-line YAML processor
+  author: donhector
+  company: darkenv.com
+
+  license: MIT
+
+  min_ansible_version: 2.11
+
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+
+  galaxy_tags:
+    - yq
+    - ubuntu
+    - debian
+
+dependencies: []

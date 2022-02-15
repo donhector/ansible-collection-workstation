@@ -1,0 +1,52 @@
+---
+dependency:
+  name: galaxy
+
+driver:
+  name: docker
+
+lint: |
+    set -e
+    yamllint .
+    ansible-lint
+
+platforms:
+
+  - name: ubuntu2004
+    image: ${MOLECULE_DISTRO:-geerlingguy/docker-ubuntu2004-ansible:latest}
+    # Needed for systemd
+    command: ${MOLECULE_DOCKER_COMMAND:-/lib/systemd/systemd}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    capabilities:
+      - SYS_ADMIN
+    pre_build_image: true
+
+  - name: debian10
+    image: ${MOLECULE_DISTRO:-geerlingguy/docker-debian10-ansible:latest}
+    # Needed for systemd
+    command: ${MOLECULE_DOCKER_COMMAND:-/lib/systemd/systemd}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    capabilities:
+      - SYS_ADMIN
+    pre_build_image: true
+
+  - name: debian11
+    image: ${MOLECULE_DISTRO:-geerlingguy/docker-debian11-ansible:latest}
+    # Needed for systemd
+    command: ${MOLECULE_DOCKER_COMMAND:-/lib/systemd/systemd}
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    capabilities:
+      - SYS_ADMIN
+    pre_build_image: true
+
+provisioner:
+  name: ansible
+  playbooks:
+    converge: ${MOLECULE_PLAYBOOK:-converge.yml}
+
+verifier:
+  name: ansible
+  enabled: true

@@ -1,7 +1,7 @@
 ---
 name: 🚀 CD
 
-on:  # yamllint disable-line rule:truthy
+on: # yamllint disable-line rule:truthy
   push:
     branches:
       - master
@@ -13,7 +13,6 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -50,7 +49,7 @@ jobs:
       - name: Set up Python 3.x
         uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
+          python-version: "3.9"
 
       - name: Install Ansible
         run: pip3 install --no-compile ansible-base
@@ -58,8 +57,12 @@ jobs:
       - name: Show Ansible version
         run: ansible --version
 
-      - name: Release to Ansible Galaxy
-        run: >-
-          ansible-galaxy role import
-          --api-key ${{ secrets.GALAXY_API_KEY }}
-          ${GITHUB_REPOSITORY%%/*} ${GITHUB_REPOSITORY#*/}
+      - name: Build collection
+        working-directory: donhector/workstation
+        run: |
+          ansible-galaxy collection build
+
+      - name: Publish to Galaxy
+        working-directory: donhector/workstation
+        run: |
+          ansible-galaxy collection publish --api-key ${{ secrets.GALAXY_API_KEY }} donhector-workstation-*.tar.gz

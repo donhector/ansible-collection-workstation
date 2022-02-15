@@ -1,0 +1,7 @@
+---
+# defaults file for apt_proxy
+
+apt_proxy__filename: '99proxy.conf'
+apt_proxy__http_url: '{{ ansible_env.http_proxy | default() }}'
+apt_proxy__https_url: '{{ ansible_env.https_proxy | default() }}'
+apt_proxy__ftp_url: '{{ ansible_env.ftp_proxy | default() }}'
