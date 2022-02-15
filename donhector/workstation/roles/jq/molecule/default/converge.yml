@@ -3,8 +3,3 @@
   hosts: all
   roles:
     - role: donhector.workstation.jq
-
-  # tasks:
-  #   - name: "Test role"
-  #     ansible.builtin.include_role:
-  #       name: donhector.workstation.jq

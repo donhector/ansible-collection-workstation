@@ -1,6 +1,7 @@
 ### Ansible
 *.retry
 .vault-pass*
+*.tar.gz
 
 ### Pipenv
 .venv
