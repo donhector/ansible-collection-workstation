@@ -1,3 +1,10 @@
+### [1.0.2](https://github.com/donhector/ansible-collection-workstation/compare/v1.0.1...v1.0.2) (2022-02-22)
+
+
+### :eyes: Misc
+
+* **readme:** described local releasing to Galaxy ([39d957c](https://github.com/donhector/ansible-collection-workstation/commit/39d957cebfb40c1eab7bdd6be5401233cfc12bcc))
+
 ### [1.0.1](https://github.com/donhector/ansible-collection-workstation/compare/v1.0.0...v1.0.1) (2022-02-22)
 
 
