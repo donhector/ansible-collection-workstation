@@ -48,10 +48,16 @@ make run
 
 ## Releasing the collection
 
+This repo is configured to automatically release a new version to Github and Galaxy whenever a new PR is merged into main (the very much preferred method)
+
+But if you want to manually push a new release to Galaxy from your own machine, you could still do so:
+
 ### Build
 
 ```shell
 cd donhector/workstation
+NEW_VERSION='1.0.0-SNAPSHOT'
+sed -i "s/^version:.*/version: ${NEW_VERSION}/g" galaxy.yml
 make build
 ```
 
