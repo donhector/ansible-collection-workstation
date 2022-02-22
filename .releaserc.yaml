@@ -1,0 +1,129 @@
+---
+# Branches from where releases can happen
+branches:
+  - main
+  - master
+
+# Print additional info
+debug: true
+
+# Use 'conventionalcommits' preset instead of the default 'angular'
+# this will passed down to all plugins
+preset: conventionalcommits
+
+# List of plugins to use.
+# Since this project is an Ansible role we won't use the npm plugin.
+# Since I'm not insterested in having a dedicated CHANGELOG.md file,
+# I won't be using the 'changelog' plugin to create one nor the 'git'
+# plugin to commit the generated 'CHANGELOG.md' back to git
+plugins:
+  # Analyze that commits conform to the preset specification
+  - - "@semantic-release/commit-analyzer"
+    - releaseRules:
+        - type: feat
+          release: minor
+        - type: fix
+          release: patch
+        - type: docs
+          release: patch
+        - type: perf
+          release: patch
+        - type: refactor
+          release: patch
+        - type: revert
+          release: patch
+        - type: chore
+          release: false
+        - type: build
+          release: false
+        - type: ci
+          release: false
+        - type: test
+          release: false
+        - type: style
+          release: false
+      parserOpts:
+        noteKeywords:
+          - BREAKING CHANGE
+          - BREAKING CHANGES
+          - BREAKING
+
+  # Generate release notes. These will be embedded in the Github release body
+  - - "@semantic-release/release-notes-generator"
+    - presetConfig:
+        types:
+          - type: feat
+            section: ":sparkles: Features"
+          - type: fix
+            section: ":bug: Bug Fixes"
+          - type: docs
+            section: ":eyes: Misc"
+          - type: chore
+            section: ":eyes: Misc"
+          - type: perf
+            section: ":muscle: Improvements"
+          - type: refactor
+            section: ":muscle: Improvements"
+          - type: style
+            section: ":muscle: Improvements"
+          - type: ci
+            section: ":robot: Automation"
+          - type: build
+            section: ":robot: Automation"
+          - type: test
+            section: ":robot: Automation"
+          - type: revert
+            section: ":poop: Revert"
+      writerOpts:
+        groupBy: type
+        # commitGroupsSort: title
+        commitGroupsSort:
+          - feat
+          - fix
+          - perf
+          - refactor
+          - style
+          - ci
+          - build
+          - test
+          - revert
+          - docs
+          - chore
+        commitsSort: header
+        # commitsSort:
+        #   - scope
+        #   - subject
+      parserOpts:
+        noteKeywords:
+          - BREAKING CHANGE
+          - BREAKING CHANGES
+          - BREAKING
+
+  # Generate us a changelog file
+  - - "@semantic-release/changelog"
+    - changelogFile: CHANGELOG.md
+
+  - - "@semantic-release/exec"
+    - prepareCmd: "sed -i 's/^version:.*/version: ${nextRelease.version}/g' donhector/workstation/galaxy.yml"
+
+  # Commit the generated changelog file into our git repo.
+  # Since we are enforcing conventional commmits in our project,
+  # we ensure the commit message also follows the specification.
+  # Additionally, to prevent this commit from triggering a new release workflow
+  # (ie. infinite release loop), we use the '[skip ci]' text,
+  # so our release workflow logic can easily filter out / ignore these kind of commits.
+  # In fact, since recently, Github workflows knows how to handle this logic automatically
+  # See (https://github.blog/changelog/2021-02-08-github-actions-skip-pull-request-and-push-workflows-with-skip-ci/)
+  - - "@semantic-release/git"
+    - assets:
+        - CHANGELOG.md
+        - donhector/workstation/galaxy.yml
+      message: "ci(release): update collection to ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+
+  # Create a release in Github
+  - - "@semantic-release/github"
+    - assets:
+        - path: LICENSE.txt
+          label: LICENSE
+        - path: donhector/workstation/donhector-workstation-${nextRelease.version}.tar.gz
+          label: donhector-workstation-${nextRelease.version}.tar.gz

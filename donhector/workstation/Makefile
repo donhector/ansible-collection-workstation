@@ -1,46 +1,12 @@
-export PIPENV_VENV_IN_PROJECT := true
+ifneq (,$(wildcard ./.env))
+    include .env
+    export
+endif
+
 
 define hr
 	@printf '%.s─' $$(seq 1 $$(tput cols))
 endef
-
-# ROLESDIR := $(abspath ./donhector/workstation/roles)
-# ROLES = $(shell find $(ROLESDIR) -maxdepth 1 -mindepth 1 -type d)
-
-# hector:
-# 	@echo $(ROLESDIR)
-# 	@echo $(ROLES)
-
-.PHONY: all
-all: install security test
-
-.PHONY: install
-install:
-	$(call hr)
-	@command -v python3 2>&1 >/dev/null || echo "Please install python3!"
-	@command -v pipenv  2>&1 >/dev/null || pip3 install pipenv
-	@which pip3 | grep -q 'shim' && asdf reshim python || true
-	@pipenv install --dev
-	@[ -f .git/hooks/pre-commit ] || pipenv run pre-commit install
-
-## remove our pipenv environment
-.PHONY: clean
-clean:
-	$(call hr)
-	@pipenv --rm
-
-## Update pipenv dependencies along with pre-commit
-.PHONY: update
-update:
-	$(call hr)
-	@pipenv update --dev
-	@pipenv run pre-commit autoupdate
-
-## Test for known vulnerabilities in our pipenv environment
-.PHONY: security
-security:
-	$(call hr)
-	@pipenv check
 
 ### Ansible/Molecule targets
 
@@ -83,3 +49,27 @@ login:
 destroy:
 	$(call hr)
 	@pipenv run molecule destroy
+
+
+### Ansible Galaxy targets
+
+## Build collection
+.PHONY: build
+build:
+	$(call hr)
+	@pipenv run ansible-galaxy collection build --force
+
+
+## Publish collection to Galaxy
+.PHONY: publish
+publish:
+	$(call hr)
+	@echo "token: ${GALAXY_API_KEY}" > ~/.ansible/galaxy_token
+	@pipenv run ansible-galaxy collection publish donhector-workstation-*.tar.gz
+
+
+## Install collection from tarball
+.PHONY: install
+install:
+	$(call hr)
+	@pipenv run ansible-galaxy collection install donhector-workstation-*.tar.gz --force -p ./collections

@@ -12,12 +12,12 @@
     # - role: fzf
     # - role: gh
     # - role: hugo
-    # - role: jq
+    - role: ../../roles/jq
     # - role: python
     # - role: ripgrep
     # - role: yq
     # - role: podman
     # - role: docker
-    - role: sudoers
+    - role: ../../roles/sudoers
 
-  collections: donhector.workstation
+  # collections: donhector.workstation
