@@ -123,7 +123,7 @@ plugins:
   # Create a release in Github
   - - "@semantic-release/github"
     - assets:
-        - path: LICENSE.txt
+        - path: LICENSE
           label: LICENSE
         - path: donhector/workstation/donhector-workstation-${nextRelease.version}.tar.gz
           label: donhector-workstation-${nextRelease.version}.tar.gz
