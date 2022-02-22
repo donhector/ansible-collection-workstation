@@ -10,7 +10,7 @@ endef
 
 
 .PHONY: all
-all: install security test
+all: install security
 
 .PHONY: install
 install:
