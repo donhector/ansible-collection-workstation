@@ -72,4 +72,11 @@ publish:
 .PHONY: install
 install:
 	$(call hr)
-	@pipenv run ansible-galaxy collection install donhector-workstation-*.tar.gz --force -p ./collections
+	@pipenv run ansible-galaxy collection install donhector-workstation-*.tar.gz --force
+
+
+## Run collection playbook
+.PHONY: run
+run:
+	$(call hr)
+	@pipenv run ansible-playbook -i localhost, playbooks/workstation.yml

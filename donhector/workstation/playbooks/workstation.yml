@@ -1,0 +1,23 @@
+---
+- name: Setup workstation
+  hosts: localhost
+  connection: local
+  roles:
+    - role: donhector.workstation.fd
+    - role: donhector.workstation.common
+    - role: donhector.workstation.apt_proxy
+    - role: donhector.workstation.asdf
+    - role: donhector.workstation.awscli
+    - role: donhector.workstation.bat
+    - role: donhector.workstation.fd
+    - role: donhector.workstation.fonts
+    - role: donhector.workstation.fzf
+    - role: donhector.workstation.gh
+    - role: donhector.workstation.hugo
+    - role: donhector.workstation.jq
+    - role: donhector.workstation.python
+    - role: donhector.workstation.ripgrep
+    - role: donhector.workstation.yq
+    - role: donhector.workstation.podman
+    - role: donhector.workstation.docker
+    - role: donhector.workstation.sudoers
