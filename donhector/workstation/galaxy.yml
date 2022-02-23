@@ -57,4 +57,4 @@ issues: http://github.com/donhector/ansible-collection-workstation/issues
 # artifact. A pattern is matched from the relative path of the file or directory of the collection directory. This
 # uses 'fnmatch' to match the files or directories. Some directories and files like 'galaxy.yml', '*.pyc', '*.retry',
 # and '.git' are always filtered
-build_ignore: ["roles/XXX"]
+build_ignore: ["molecule", "roles/XXX", "*.env", "ansible.cfg"]
