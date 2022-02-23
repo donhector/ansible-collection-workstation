@@ -1,3 +1,10 @@
+## [1.1.0](https://github.com/donhector/ansible-collection-workstation/compare/v1.0.2...v1.1.0) (2022-02-23)
+
+
+### :sparkles: Features
+
+* **playbook:** add playbook to run all roles ([f80cc3c](https://github.com/donhector/ansible-collection-workstation/commit/f80cc3c3246215bb21ce42dcd6d109450a87456d))
+
 ### [1.0.2](https://github.com/donhector/ansible-collection-workstation/compare/v1.0.1...v1.0.2) (2022-02-22)
 
 
