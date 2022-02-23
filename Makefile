@@ -43,3 +43,9 @@ update:
 security:
 	$(call hr)
 	@pipenv check
+
+## Test collection
+.PHONY: test
+test:
+	$(call hr)
+	@make -C donhector/workstation test
