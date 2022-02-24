@@ -39,8 +39,6 @@ update:
 security:
 	$(call hr)
 	@pipenv check
-<<<<<<< Updated upstream
-=======
 
 ## Test collection
 .PHONY: test
@@ -53,4 +51,3 @@ test:
 test-%:
 	$(call hr)
 	@$(MAKE) -C donhector/workstation/roles/$* test
->>>>>>> Stashed changes
