@@ -62,7 +62,7 @@ build:
 
 ## Publish collection to Galaxy
 .PHONY: publish
-publish:
+publish: build
 	$(call hr)
 	@echo "token: ${GALAXY_API_KEY}" > ~/.ansible/galaxy_token
 	@pipenv run ansible-galaxy collection publish donhector-workstation-*.tar.gz
@@ -70,13 +70,13 @@ publish:
 
 ## Install collection from tarball
 .PHONY: install
-install:
+install: build
 	$(call hr)
 	@pipenv run ansible-galaxy collection install donhector-workstation-*.tar.gz --force
 
 
 ## Run collection playbook
 .PHONY: run
-run:
+run: install
 	$(call hr)
-	@pipenv run ansible-playbook -i localhost, playbooks/workstation.yml
+	@pipenv run ansible-playbook -i localhost, donhector.workstation.setup

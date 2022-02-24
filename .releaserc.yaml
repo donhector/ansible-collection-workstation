@@ -12,10 +12,8 @@ debug: true
 preset: conventionalcommits
 
 # List of plugins to use.
-# Since this project is an Ansible role we won't use the npm plugin.
-# Since I'm not insterested in having a dedicated CHANGELOG.md file,
-# I won't be using the 'changelog' plugin to create one nor the 'git'
-# plugin to commit the generated 'CHANGELOG.md' back to git
+# Since this project is an Ansible collection we won't use the npm plugin.
+# We use the changelog plugin to generate CHANGELOG.md and git plugin to commit it
 plugins:
   # Analyze that commits conform to the preset specification
   - - "@semantic-release/commit-analyzer"
@@ -103,6 +101,7 @@ plugins:
   - - "@semantic-release/changelog"
     - changelogFile: CHANGELOG.md
 
+  # Execute a command (ie update the collection version in galaxy.yml prior to building the collection)
   - - "@semantic-release/exec"
     - prepareCmd: "sed -i 's/^version:.*/version: ${nextRelease.version}/g' donhector/workstation/galaxy.yml"
 
