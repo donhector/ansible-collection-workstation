@@ -12,6 +12,7 @@ endef
 .PHONY: all
 all: install security
 
+## create a venv with the tools required for this project
 .PHONY: install
 install:
 	$(call hr)
@@ -19,7 +20,10 @@ install:
 	@command -v pipenv  2>&1 >/dev/null || pip3 install pipenv
 	@which pip3 | grep -q 'shim' && asdf reshim python || true
 	@pipenv install --dev
-	@[ -f .git/hooks/pre-commit ] || pipenv run pre-commit install
+	@pipenv run pre-commit install \
+				--hook-type pre-commit \
+				--hook-type commit-msg \
+				--hook-type pre-push
 
 ## remove our pipenv environment
 .PHONY: clean
