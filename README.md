@@ -79,4 +79,4 @@ cd donhector/workstation
 make install
 ```
 
-This will install the collection in `donhector/workstation/collections`
+By default the collection will get installed at `~/.ansible/collections/ansible_collections/donhector/workstation`
