@@ -31,15 +31,15 @@ make test
 To test individual roles:
 
 ```shell
-cd donhector/workstation/roles/<role>
-make test
+cd donhector/workstation
+make test-<role>
 ```
 
 If you are only after linting, you can use the `make lint` target instead.
 
 I personally recommend that you configure linting on file saving (ie use the official 'ansible' extension in VScode)
 
-To run the role directly on the host (and not a docker test container):
+To run the role directly against your local host (vs testing it inside a molecule test container):
 
 ```shell
 cd donhector/workstation/roles/<role>
@@ -50,7 +50,11 @@ make run
 
 This repo is configured to automatically release a new version to Github and Galaxy whenever a new PR is merged into main (the very much preferred method)
 
-But if you want to manually push a new release to Galaxy from your own machine, you could still do so:
+Auto-merge is enabled so if the PR is green (passes all checks) is merged to main and therefore the CD workflow is triggered.
+
+This might or might no result in a new release. That would depend on the semantic commits included in PR.
+
+If you want to manually push a new release to Galaxy from your own machine (not recommended), you could still do so:
 
 ### Build
 
