@@ -1,3 +1,22 @@
+### [1.1.1](https://github.com/donhector/ansible-collection-workstation/compare/v1.1.0...v1.1.1) (2022-03-12)
+
+
+### :bug: Bug Fixes
+
+* **playbook:** removed duplicate role ([a40f201](https://github.com/donhector/ansible-collection-workstation/commit/a40f2015ffd087a00a0ff7ffa0b9843f72ccdadb))
+
+
+### :robot: Automation
+
+* **deps:** bump actions/checkout from 2 to 3 ([92cc18c](https://github.com/donhector/ansible-collection-workstation/commit/92cc18c7ac367c922c07c59aa1f7ca2d3e4b6be9))
+* **deps:** bump actions/setup-python from 2 to 3 ([f6d7c5a](https://github.com/donhector/ansible-collection-workstation/commit/f6d7c5a7ae1e73e6e9f76c6b20a5d1309746c8a2))
+* **makefile:** add test target ([017d22d](https://github.com/donhector/ansible-collection-workstation/commit/017d22d5e0a1569448948c500689da3038e8c536))
+* **makefile:** allow testing individual roles from top level make ([c293a7e](https://github.com/donhector/ansible-collection-workstation/commit/c293a7e0836082a1e57128f90147222de6911ffd))
+* **makefile:** update targets ([561c490](https://github.com/donhector/ansible-collection-workstation/commit/561c490a976886f60c8951d17dea1afe09a7b5aa))
+* **precommit:** update precommit hooks ([da5f3da](https://github.com/donhector/ansible-collection-workstation/commit/da5f3dadde4f6d619c915a721754f0e5ca570927))
+* **delivery:** publish to Galaxy only on new releases ([d3a0ce2](https://github.com/donhector/ansible-collection-workstation/commit/d3a0ce2e176deeb2441eb2f3abcccc4458afb50f))
+* **deps:** bump ansible from 5.3.0 to 5.4.0 ([0f637f8](https://github.com/donhector/ansible-collection-workstation/commit/0f637f8947f358e3b11511807baea3aba845e9f6))
+
 ## [1.1.0](https://github.com/donhector/ansible-collection-workstation/compare/v1.0.2...v1.1.0) (2022-02-23)
 
 

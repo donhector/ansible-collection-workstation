@@ -10,7 +10,6 @@
     - role: donhector.workstation.fd
     - role: donhector.workstation.ripgrep
     - role: donhector.workstation.bat
-    - role: donhector.workstation.fd
     - role: donhector.workstation.awscli
     - role: donhector.workstation.fzf
     - role: donhector.workstation.gh
