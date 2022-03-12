@@ -1,3 +1,10 @@
+### [1.1.2](https://github.com/donhector/ansible-collection-workstation/compare/v1.1.1...v1.1.2) (2022-03-12)
+
+
+### :eyes: Misc
+
+* **readme:** updated Readme ([03d4d99](https://github.com/donhector/ansible-collection-workstation/commit/03d4d99f432fa8d55b60c0b15fe88fd45a807294))
+
 ### [1.1.1](https://github.com/donhector/ansible-collection-workstation/compare/v1.1.0...v1.1.1) (2022-03-12)
 
 
