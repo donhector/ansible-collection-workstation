@@ -25,10 +25,10 @@
         },
         "ansible-core": {
             "hashes": [
-                "sha256:bc79e1723a5a92cbc105d581b25b66840d15bb5f4c98925c936ef5a71f92e7c3"
+                "sha256:8a135a9f74c97cab67759293744ad34350f719523e8bd9bb9008df4cf953af20"
             ],
             "markers": "python_version >= '3.8'",
-            "version": "==2.12.2"
+            "version": "==2.12.3"
         },
         "cffi": {
             "hashes": [
@@ -238,11 +238,11 @@
     "develop": {
         "ansible-compat": {
             "hashes": [
-                "sha256:2ade2acbd1d7868eeb602c682afe92bc8c05480333205c328b4c2a1b09f970a4",
-                "sha256:8b9c9678e82c328df9574cd7eb3777e7f25cf1530bc48e612597213bc6e4bd0d"
+                "sha256:4027da4ec2b524c263a801cc2dc6da2b98c2996cec258cef118a30c790467ed2",
+                "sha256:c004cf81a6f8aa94e656f576327c2a30476dbe06385ec93ab7d866a35f444c45"
             ],
-            "markers": "python_version >= '3.6'",
-            "version": "==1.0.0"
+            "markers": "python_version >= '3.8'",
+            "version": "==2.0.0"
         },
         "ansible-lint": {
             "hashes": [
@@ -641,10 +641,10 @@
         },
         "paramiko": {
             "hashes": [
-                "sha256:04097dbd96871691cdb34c13db1883066b8a13a0df2afd4cb0a92221f51c2603",
-                "sha256:944a9e5dbdd413ab6c7951ea46b0ab40713235a9c4c5ca81cfe45c6f14fa677b"
+                "sha256:443f4da23ec24e9a9c0ea54017829c282abdda1d57110bf229360775ccd27a31",
+                "sha256:f6cbd3e1204abfdbcd40b3ecbc9d32f04027cd3080fe666245e21e7540ccfc1b"
             ],
-            "version": "==2.9.2"
+            "version": "==2.10.1"
         },
         "pathspec": {
             "hashes": [
@@ -805,11 +805,11 @@
         },
         "rich": {
             "hashes": [
-                "sha256:1a6266a5738115017bb64a66c59c717e7aa047b3ae49a011ede4abdeffc6536e",
-                "sha256:d5f49ad91fb343efcae45a2b2df04a9755e863e50413623ab8c9e74f05aee52b"
+                "sha256:14bfd0507edc633e021b02c45cbf7ca22e33b513817627b8de3412f047a3e798",
+                "sha256:fdcd2f8d416e152bcf35c659987038d1ae5a7bd336e821ca7551858a4c7e38a9"
             ],
             "markers": "python_version < '4.0' and python_full_version >= '3.6.2'",
-            "version": "==11.2.0"
+            "version": "==12.0.0"
         },
         "ruamel.yaml": {
             "hashes": [
@@ -945,11 +945,11 @@
         },
         "virtualenv": {
             "hashes": [
-                "sha256:01f5f80744d24a3743ce61858123488e91cb2dd1d3bdf92adaf1bba39ffdedf0",
-                "sha256:e7b34c9474e6476ee208c43a4d9ac1510b041c68347eabfe9a9ea0c86aa0a46b"
+                "sha256:dd448d1ded9f14d1a4bfa6bfc0c5b96ae3be3f2d6c6c159b23ddcfd701baa021",
+                "sha256:e9dd1a1359d70137559034c0f5433b34caf504af2dc756367be86a5a32967134"
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4'",
-            "version": "==20.13.2"
+            "version": "==20.13.3"
         },
         "wcmatch": {
             "hashes": [
