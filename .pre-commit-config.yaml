@@ -18,12 +18,12 @@ repos:
       - id: mixed-line-ending
       - id: detect-private-key
       - id: detect-aws-credentials
-        args: ['--allow-missing-credentials']
+        args: ["--allow-missing-credentials"]
       - id: no-commit-to-branch
-        args: ['--branch', 'master', '--branch', 'main']
+        args: ["--branch", "master", "--branch", "main"]
 
   - repo: https://github.com/jorisroovers/gitlint
-    rev:  v0.17.0
+    rev: v0.17.0
     hooks:
       - id: gitlint
 
@@ -32,7 +32,7 @@ repos:
       - id: test
         name: Test
         entry: make
-        args: ['test']
+        args: ["test"]
         pass_filenames: false
         language: system
         stages: [push]

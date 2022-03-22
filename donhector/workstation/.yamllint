@@ -10,6 +10,7 @@ ignore: |
 rules:
   braces:
     max-spaces-inside: 1
+    min-spaces-inside: 0
     level: error
   brackets:
     max-spaces-inside: 1
@@ -31,7 +32,7 @@ rules:
   indentation: disable
   key-duplicates: enable
   line-length:
-    max: 120
+    max: 126
     level: warning
   new-line-at-end-of-file: enable
   new-lines:
