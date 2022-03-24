@@ -2,10 +2,12 @@
 # Based on ansible-lint config
 extends: default
 
-ignore: |
-  .venv/
-  .cache/
-  .github/stale.yml
+# ignore: |
+#   .venv/
+#   .cache/
+#   .github/stale.yml
+#   .vscode/
+#   .git/
 
 rules:
   braces:

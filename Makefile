@@ -55,3 +55,15 @@ test:
 test-%:
 	$(call hr)
 	@$(MAKE) -C donhector/workstation/roles/$* test
+
+## lint collection
+.PHONY: lint
+lint:
+	$(call hr)
+	@$(MAKE) -C donhector/workstation lint
+
+## lint role
+.PHONY: lint-%
+lint-%:
+	$(call hr)
+	@$(MAKE) -C donhector/workstation/roles/$* lint

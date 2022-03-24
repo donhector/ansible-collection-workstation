@@ -20,5 +20,5 @@
 
 
 - name: Show user pip version
-  debug:
+  ansible.builtin.debug:
     msg: "User pip version: {{ user_pip_version.stdout }}"

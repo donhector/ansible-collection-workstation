@@ -1,10 +1,5 @@
-exclude_paths:
-  - .cache/
-  - .git/
-  - .github/
-  - .idea/
-  - .vscode/
-  - .venv/
+# exclude_paths:
+#   - meta/
 
 skip_list:
   - line-length
