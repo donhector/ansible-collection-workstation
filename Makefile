@@ -46,13 +46,13 @@ security:
 .PHONY: test
 test:
 	$(call hr)
-	@$(MAKE) -C ansible_collections/donhector/workstation test
+	@pipenv shell && $(MAKE) -C ansible_collections/donhector/workstation test
 
 ## Test role
 .PHONY: test-%
 test-%:
 	$(call hr)
-	@$(MAKE) -C ansible_collections/donhector/workstation/roles/$* test
+	@pipenv run $(MAKE) -C ansible_collections/donhector/workstation/roles/$* test
 
 ## lint collection
 .PHONY: lint

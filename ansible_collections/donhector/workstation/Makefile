@@ -7,8 +7,6 @@ define hr
 	@printf '%.s─' $$(seq 1 $$(tput cols))
 endef
 
-export ANSIBLE_CONFIG="./ansible.cfg"
-
 ### Ansible/Molecule targets
 
 ## Lint collection
