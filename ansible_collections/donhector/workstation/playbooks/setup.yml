@@ -1,0 +1,28 @@
+---
+- name: Setup workstation
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Setup workstation
+      include_role:
+        name: "{{ rolename }}"
+      loop:
+        - apt_proxy
+        - common
+        - sudoers
+        - fonts
+        - awscli
+        - bat
+        - fd
+        - fzf
+        - gh
+        - hugo
+        - jq
+        - ripgrep
+        - python
+        - yq
+        - podman
+        - docker
+        - asdf
+      loop_control:
+        loop_var: rolename

@@ -63,7 +63,7 @@ jobs:
       - name: Molecule test [${{ matrix.distros }}]
         # make test wraps 'molecule test --all' so it also does linting
         run: make test
-        working-directory: donhector/workstation
+        #working-directory: ansible_collections/donhector/workstation
         env:
           MOLECULE_DISTRO: "${{ matrix.distros }}"
           PY_COLORS: "1"

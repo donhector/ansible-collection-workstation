@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  vars:
+    ansible_connection: local
+  tasks:
+    - name: Test
+      include_role:
+        name: gh

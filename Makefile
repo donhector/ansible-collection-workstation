@@ -3,11 +3,9 @@ ifneq (,$(wildcard ./.env))
     export
 endif
 
-
 define hr
 	@printf '%.s─' $$(seq 1 $$(tput cols))
 endef
-
 
 .PHONY: all
 all: install security
@@ -48,22 +46,28 @@ security:
 .PHONY: test
 test:
 	$(call hr)
-	@$(MAKE) -C donhector/workstation test
+	@$(MAKE) -C ansible_collections/donhector/workstation test
 
 ## Test role
 .PHONY: test-%
 test-%:
 	$(call hr)
-	@$(MAKE) -C donhector/workstation/roles/$* test
+	@$(MAKE) -C ansible_collections/donhector/workstation/roles/$* test
 
 ## lint collection
 .PHONY: lint
 lint:
 	$(call hr)
-	@$(MAKE) -C donhector/workstation lint
+	@$(MAKE) -C ansible_collections/donhector/workstation lint
 
 ## lint role
 .PHONY: lint-%
 lint-%:
 	$(call hr)
-	@$(MAKE) -C donhector/workstation/roles/$* lint
+	@$(MAKE) -C ansible_collections/donhector/workstation/roles/$* lint
+
+## run role on local host
+.PHONY: run-%
+run-%:
+	$(call hr)
+	@$(MAKE) -C ansible_collections/donhector/workstation/roles/$* run
