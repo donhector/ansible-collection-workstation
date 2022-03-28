@@ -105,7 +105,7 @@ plugins:
   - - "@semantic-release/exec"
     - prepareCmd: "sed -i 's/^version:.*/version: ${nextRelease.version}/g' ansible_collections/donhector/workstation/galaxy.yml"
   - - "@semantic-release/exec"
-    - prepareCmd: "sed -i 's/^version.*/version = ${nextRelease.version}/g' pyproject.toml"
+    - prepareCmd: "sed -i 's/^version.*/version = \"${nextRelease.version}\"/g' pyproject.toml"
 
   # Commit the generated changelog file into our git repo.
   # Since we are enforcing conventional commmits in our project,
