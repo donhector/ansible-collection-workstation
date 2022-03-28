@@ -1,0 +1,21 @@
+---
+# tasks file for terraform
+- name: Check if terraform {{ terraform_version }} is installed
+  ansible.builtin.shell: terraform version || true
+  register: terraform_check
+  changed_when: false
+
+- name: Install terraform
+  block:
+    - name: Ensure unzip is installed.
+      ansible.builtin.package: name=unzip state=present
+
+    - name: Download and unarchive terraform.
+      become: true
+      ansible.builtin.unarchive:
+        src: https://releases.hashicorp.com/terraform/{{ terraform_version }}/terraform_{{ terraform_version }}_linux_{{ terraform_arch }}.zip
+        dest: "{{ terraform_bin_path }}"
+        remote_src: true
+        creates: "{{ terraform_bin_path }}/terraform"
+        mode: 0755
+  when: terraform_version not in terraform_check.stdout

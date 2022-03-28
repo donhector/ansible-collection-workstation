@@ -1,0 +1,28 @@
+---
+galaxy_info:
+  role_name: packer
+  description: Install Hashicorp Packer
+  author: donhector
+  company: darkenv.com
+
+  license: MIT
+
+  min_ansible_version: 2.11
+
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+
+  galaxy_tags:
+    - packer
+    - ubuntu
+    - debian
+
+dependencies: []

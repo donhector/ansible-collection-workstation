@@ -1,5 +1,5 @@
 exclude_paths:
-  - meta/
+  - "meta/runtime.yml"
   - "**/molecule.yml"
 
 skip_list:

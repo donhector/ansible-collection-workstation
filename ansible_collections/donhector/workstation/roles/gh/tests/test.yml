@@ -4,5 +4,5 @@
     ansible_connection: local
   tasks:
     - name: Test
-      include_role:
+      ansible.builtin.include_role:
         name: gh
