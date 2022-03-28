@@ -104,6 +104,8 @@ plugins:
   # Execute a command (ie update the collection version in galaxy.yml prior to building the collection)
   - - "@semantic-release/exec"
     - prepareCmd: "sed -i 's/^version:.*/version: ${nextRelease.version}/g' donhector/workstation/galaxy.yml"
+  - - "@semantic-release/exec"
+    - prepareCmd: "sed -i 's/^version.*/version = ${nextRelease.version}/g' pyproject.toml"
 
   # Commit the generated changelog file into our git repo.
   # Since we are enforcing conventional commmits in our project,
@@ -117,6 +119,7 @@ plugins:
     - assets:
         - CHANGELOG.md
         - donhector/workstation/galaxy.yml
+        - pyproject.toml
       message: "ci(release): update collection to ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
 
   # Create a release in Github

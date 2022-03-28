@@ -1,6 +1,0 @@
----
-- hosts: localhost
-  vars:
-    ansible_connection: local
-  roles:
-    - { role: donhector.docker }

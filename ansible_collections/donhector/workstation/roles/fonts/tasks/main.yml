@@ -1,0 +1,22 @@
+---
+# tasks file for fonts
+
+- name: Load OS and distro specific vars.
+  ansible.builtin.include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
+    - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
+    - "{{ ansible_distribution }}.yml"
+    - "{{ ansible_os_family }}.yml"
+
+# For comparing version numbers, refer to
+# https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html#comparing-versions
+
+- name: Install fonts (Debian/Ubuntu)
+  become: true
+  ansible.builtin.apt:
+    name: "{{ fonts_packages }}"
+    state: present
+    update_cache: true
+    cache_valid_time: 3600
+  when: ansible_os_family == 'Debian'

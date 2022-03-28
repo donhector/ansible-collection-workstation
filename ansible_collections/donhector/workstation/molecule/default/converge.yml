@@ -1,0 +1,31 @@
+---
+- name: Converge
+  hosts: all
+
+  collections:
+    - donhector.workstation
+
+  tasks:
+    - name: Role testing
+      include_role:
+        name: "{{ rolename }}"
+      loop:
+        # - fonts
+        # - common
+        # - apt_proxy
+        # - asdf
+        # - awscli
+        # - bat
+        # - fd
+        # - fzf
+        # - gh
+        # - hugo
+        # - jq
+        # - python
+        # - ripgrep
+        # - yq
+        # - podman
+        # - docker
+        - sudoers
+      loop_control:
+        loop_var: rolename

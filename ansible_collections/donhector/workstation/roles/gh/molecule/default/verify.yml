@@ -1,0 +1,22 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+  vars_files:
+    - ../../defaults/main.yml
+  tasks:
+    - name: Get installed version
+      ansible.builtin.command: gh --version
+      register: installed_version
+      changed_when: false
+
+    - name: Debug
+      ansible.builtin.debug:
+        var: installed_version.stdout_lines[0]
+
+    - name: Example assertion
+      ansible.builtin.assert:
+        that:
+          - gh_version in installed_version.stdout_lines[0]
