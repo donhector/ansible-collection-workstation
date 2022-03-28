@@ -18,10 +18,10 @@ create:
 converge: create
 	@poetry run molecule converge
 
-## Log into the running instance
-.PHONY: login
-login:
-	@poetry run molecule login
+## Log into the running instance (ie: make login-debian11)
+.PHONY: login-%
+login-%:
+	@poetry run molecule login --host $*
 
 ## Destroy the instance
 .PHONY: destroy

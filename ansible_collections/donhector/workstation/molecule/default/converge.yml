@@ -7,7 +7,7 @@
 
   tasks:
     - name: Role testing
-      include_role:
+      ansible.builtin.include_role:
         name: "{{ rolename }}"
       loop:
         # - fonts
@@ -26,6 +26,8 @@
         # - yq
         # - podman
         # - docker
+        # - packer
+        # - terraform
         - sudoers
       loop_control:
         loop_var: rolename
