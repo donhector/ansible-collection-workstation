@@ -13,7 +13,7 @@ endef
 .PHONY: lint
 lint:
 	$(call hr)
-	@pipenv run molecule lint
+	@poetry run molecule lint
 
 ## Lint specific role
 .PHONY: lint-%
@@ -26,7 +26,7 @@ lint-%:
 .PHONY: test
 test:
 	$(call hr)
-	@pipenv run molecule test --all
+	@poetry run molecule test --all
 
 ## Test specific role
 .PHONY: test-%
@@ -46,27 +46,27 @@ run-%:
 .PHONY: create
 create:
 	$(call hr)
-	@pipenv run molecule create
+	@poetry run molecule create
 
 
 ## Converge (runs the molecule/converge.yaml playbook)
 .PHONY: converge
 converge: create
 	$(call hr)
-	@pipenv run molecule converge
+	@poetry run molecule converge
 
 ## Log into the running instance
 .PHONY: login
 login:
 	$(call hr)
-	@pipenv run molecule login
+	@poetry run molecule login
 
 
 ## Destroy the instance
 .PHONY: destroy
 destroy:
 	$(call hr)
-	@pipenv run molecule destroy
+	@poetry run molecule destroy
 
 
 ### Ansible Galaxy targets
@@ -75,7 +75,7 @@ destroy:
 .PHONY: build
 build:
 	$(call hr)
-	@pipenv run ansible-galaxy collection build --force
+	@poetry run ansible-galaxy collection build --force
 
 
 ## Publish collection to Galaxy
@@ -83,18 +83,18 @@ build:
 publish: build
 	$(call hr)
 	@echo "token: ${GALAXY_API_KEY}" > ~/.ansible/galaxy_token
-	@pipenv run ansible-galaxy collection publish donhector-workstation-*.tar.gz
+	@poetry run ansible-galaxy collection publish donhector-workstation-*.tar.gz
 
 
 ## Install collection from tarball
 .PHONY: install
 install: build
 	$(call hr)
-	@pipenv run ansible-galaxy collection install donhector-workstation-*.tar.gz --force
+	@poetry run ansible-galaxy collection install donhector-workstation-*.tar.gz --force
 
 
 ## Run collection playbook
 .PHONY: run
 run: install
 	$(call hr)
-	@pipenv run ansible-playbook -i localhost, donhector.workstation.setup
+	@poetry run ansible-playbook -i localhost, donhector.workstation.setup

@@ -12,7 +12,7 @@ jobs:
     name: Molecule
     runs-on: ubuntu-latest
     env:
-      PIPENV_VENV_IN_PROJECT: true
+      POETRY_VIRTUALENVS_IN_PROJECT: true
     strategy:
       matrix:
         distros:
@@ -40,25 +40,32 @@ jobs:
         with:
           python-version: "3.9"
 
-      - name: Install pipenv
-        run: |
-          pip -V
-          python -m pip install --upgrade pipenv wheel
-
-      - name: Cache pipenv
-        id: cache-pipenv
+      - name: Cache poetry
+        id: cache-poetry
         uses: actions/cache@v2.1.7
         with:
           #path: ~/.local/share/virtualenvs
           path: .venv
-          key: ${{ runner.os }}-pipenv-${{ hashFiles('Pipfile.lock') }}
+          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
           restore-keys: |
-            ${{ runner.os }}-pipenv-
+            ${{ runner.os }}-poetry-
 
-      - name: Install all dependencies
-        if: steps.cache-pipenv.outputs.cache-hit != 'true'
-        run: |
-          pipenv install --deploy --dev
+      # - name: Install poetry
+      #   run: |
+      #     pip -V
+      #     python -m pip install --upgrade poetry wheel
+      #     poetry -V
+
+      # - name: Install all dependencies
+      #   if: steps.cache-poetry.outputs.cache-hit != 'true'
+      #   run: |
+      #     poetry install
+
+      - name: Install deps
+        run: make install
+
+      - name: Security checks
+        run: make security
 
       - name: Molecule test [${{ matrix.distros }}]
         # make test wraps 'molecule test --all' so it also does linting

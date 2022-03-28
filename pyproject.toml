@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "donhector.workstation"
+version = "1.1.2"
+description = "Ansible collection: donhector.workstation"
+authors = ["donhector <2475379+donhector@users.noreply.github.com>"]
+license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/donhector/ansible-collection-workstation"
+repository = "https://github.com/donhector/ansible-collection-workstation"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+ansible = "^5.5.0"
+
+[tool.poetry.dev-dependencies]
+molecule = {extras = ["docker"], version = "^3.6.1"}
+ansible-lint = "^5.4.0"
+yamllint = "^1.26.3"
+pre-commit = "^2.17.0"
+commitizen = "^2.21.2"
+gitlint = "^0.17.0"
+safety = "^1.10.3"
+bandit = "^1.7.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

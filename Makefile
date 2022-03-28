@@ -15,44 +15,53 @@ all: install security
 install:
 	$(call hr)
 	@command -v python3 2>&1 >/dev/null || echo "Please install python3!"
-	@command -v pipenv  2>&1 >/dev/null || pip3 install pipenv
+	@command -v poetry  2>&1 >/dev/null || pip3 install poetry
 	@which pip3 | grep -q 'shim' && asdf reshim python || true
-	@pipenv install --dev
-	@pipenv run pre-commit install \
+	@poetry install --remove-untracked
+
+## install precommit hooks
+.PHONY: precommit
+precommit:
+	$(call hr)
+	@poetry run pre-commit install \
 				--hook-type pre-commit \
 				--hook-type commit-msg \
 				--hook-type pre-push
 
-## remove our pipenv environment
+setup: install precommit
+
+## remove our poetry environment
 .PHONY: clean
 clean:
 	$(call hr)
-	@pipenv --rm
+	@poetry env remove ./.venv
 
-## Update pipenv dependencies along with pre-commit
+## Update poetry dependencies along with pre-commit
 .PHONY: update
 update:
 	$(call hr)
-	@pipenv update --dev
-	@pipenv run pre-commit autoupdate
+	@poetry update
+	@poetry run pre-commit autoupdate
 
-## Test for known vulnerabilities in our pipenv environment
+## Test for known vulnerabilities in our poetry environment
 .PHONY: security
 security:
 	$(call hr)
-	@pipenv check
+	@poetry run safety check --ignore 42923
+	$(call hr)
+	@poetry run bandit -r ansible_collections/donhector/workstation
 
 ## Test collection
 .PHONY: test
 test:
 	$(call hr)
-	@pipenv shell && $(MAKE) -C ansible_collections/donhector/workstation test
+	@$(MAKE) -C ansible_collections/donhector/workstation test
 
 ## Test role
 .PHONY: test-%
 test-%:
 	$(call hr)
-	@pipenv run $(MAKE) -C ansible_collections/donhector/workstation/roles/$* test
+	@$(MAKE) -C ansible_collections/donhector/workstation/roles/$* test
 
 ## lint collection
 .PHONY: lint
@@ -71,3 +80,19 @@ lint-%:
 run-%:
 	$(call hr)
 	@$(MAKE) -C ansible_collections/donhector/workstation/roles/$* run
+
+## create molecule instances
+.PHONY: create
+create:
+	$(call hr)
+	@$(MAKE) -C ansible_collections/donhector/workstation/ create
+
+.PHONY: converge
+converge:
+	$(call hr)
+	@$(MAKE) -C ansible_collections/donhector/workstation/ converge
+
+.PHONY: converge-%
+converge-%:
+	$(call hr)
+	@$(MAKE) -C ansible_collections/donhector/workstation/roles/$* converge

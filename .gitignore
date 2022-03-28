@@ -4,14 +4,14 @@
 *.tar.gz
 
 ### Pipenv
-.venv
+.venv/
 
 ### Python
 */__pycache__
 *.pyc
 
 ### Misc
-.cache
+.cache/
 
 xxx/
 
