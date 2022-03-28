@@ -103,7 +103,7 @@ plugins:
 
   # Execute a command (ie update the collection version in galaxy.yml prior to building the collection)
   - - "@semantic-release/exec"
-    - prepareCmd: "sed -i 's/^version:.*/version: ${nextRelease.version}/g' donhector/workstation/galaxy.yml"
+    - prepareCmd: "sed -i 's/^version:.*/version: ${nextRelease.version}/g' ansible_collections/donhector/workstation/galaxy.yml"
   - - "@semantic-release/exec"
     - prepareCmd: "sed -i 's/^version.*/version = ${nextRelease.version}/g' pyproject.toml"
 
@@ -118,7 +118,7 @@ plugins:
   - - "@semantic-release/git"
     - assets:
         - CHANGELOG.md
-        - donhector/workstation/galaxy.yml
+        - ansible_collections/donhector/workstation/galaxy.yml
         - pyproject.toml
       message: "ci(release): update collection to ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
 
@@ -127,5 +127,5 @@ plugins:
     - assets:
         - path: LICENSE
           label: LICENSE
-        - path: donhector/workstation/donhector-workstation-${nextRelease.version}.tar.gz
+        - path: ansible_collections/donhector/workstation/donhector-workstation-${nextRelease.version}.tar.gz
           label: donhector-workstation-${nextRelease.version}.tar.gz
