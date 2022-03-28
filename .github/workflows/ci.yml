@@ -52,9 +52,10 @@ jobs:
         with:
           path: |
             .venv
-          key: ${{ runner.os }}-poetry-v1-${{ hashFiles('poetry.lock') }}
+            ~/.cache/pypoetry
+          key: ${{ runner.os }}-poetry-${{ hashFiles('poetry.lock') }}
           restore-keys: |
-            ${{ runner.os }}-poetry-v1
+            ${{ runner.os }}-poetry
 
       - name: Install all dependencies
         if: steps.cache-poetry.outputs.cache-hit != 'true'
