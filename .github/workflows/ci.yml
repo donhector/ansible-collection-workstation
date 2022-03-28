@@ -50,18 +50,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-poetry-
 
-      # - name: Install poetry
-      #   run: |
-      #     pip -V
-      #     python -m pip install --upgrade poetry wheel
-      #     poetry -V
-
-      # - name: Install all dependencies
-      #   if: steps.cache-poetry.outputs.cache-hit != 'true'
-      #   run: |
-      #     poetry install
-
       - name: Install deps
+        if: steps.cache-poetry.outputs.cache-hit != 'true'
         run: make install
 
       - name: Security checks
