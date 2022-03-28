@@ -1,0 +1,21 @@
+---
+# tasks file for packer
+- name: Check if Packer {{ packer_version }} is installed
+  ansible.builtin.shell: packer version || true
+  register: packer_check
+  changed_when: false
+
+- name: Install Packer
+  block:
+    - name: Ensure unzip is installed.
+      ansible.builtin.package: name=unzip state=present
+
+    - name: Download and unarchive Packer.
+      become: true
+      ansible.builtin.unarchive:
+        src: https://releases.hashicorp.com/packer/{{ packer_version }}/packer_{{ packer_version }}_linux_{{ packer_arch }}.zip
+        dest: "{{ packer_bin_path }}"
+        remote_src: true
+        creates: "{{ packer_bin_path }}/packer"
+        mode: 0755
+  when: packer_version not in packer_check.stdout

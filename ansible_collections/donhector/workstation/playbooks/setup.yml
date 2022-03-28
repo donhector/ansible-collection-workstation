@@ -4,7 +4,7 @@
   connection: local
   tasks:
     - name: Setup workstation
-      include_role:
+      ansible.builtin.include_role:
         name: "{{ rolename }}"
       loop:
         - apt_proxy
@@ -19,6 +19,8 @@
         - hugo
         - jq
         - ripgrep
+        - packer
+        - terraform
         - python
         - yq
         - podman
