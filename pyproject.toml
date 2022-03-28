@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "donhector.workstation"
-version = "1.1.2"
+version = 1.1.3
 description = "Ansible collection: donhector.workstation"
 authors = ["donhector <2475379+donhector@users.noreply.github.com>"]
 license = "MIT"

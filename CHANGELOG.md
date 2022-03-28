@@ -1,3 +1,22 @@
+### [1.1.3](https://github.com/donhector/ansible-collection-workstation/compare/v1.1.2...v1.1.3) (2022-03-28)
+
+
+### :robot: Automation
+
+* **deps:** pin ansible-lint to 5.4.0 ([514eddc](https://github.com/donhector/ansible-collection-workstation/commit/514eddc9c732d6f19ae153980ea5a24aa743bba3))
+* **make:** add lint target in top level makefile ([efc322c](https://github.com/donhector/ansible-collection-workstation/commit/efc322c41fe7c2c7ec96ea9636a01ca0ae6a87c2))
+* **make:** this is some stuff ([58769ba](https://github.com/donhector/ansible-collection-workstation/commit/58769bade143d49ba0e5dc8aa9bce33adb0e3962))
+* **pipfile:** update pipfile.lock ([7f9e1f9](https://github.com/donhector/ansible-collection-workstation/commit/7f9e1f90a118dac1534739cd2151f2682cd0f509))
+* **cd:** fix path to assets ([b99113d](https://github.com/donhector/ansible-collection-workstation/commit/b99113dd9c06cfaaab83969efdad269094808a1f))
+* **deps:** bump ansible from 5.4.0 to 5.5.0 ([0e1fd1a](https://github.com/donhector/ansible-collection-workstation/commit/0e1fd1abc1a9593ae672a043e507f6cf82dabe4d))
+* **test:** Some dummy commit ([cfef177](https://github.com/donhector/ansible-collection-workstation/commit/cfef177cd9d05c447084d3eaafc17dc9ad04b0af))
+
+
+### :muscle: Improvements
+
+* **molecule:** use ansible_collection top level folder ([0e8322f](https://github.com/donhector/ansible-collection-workstation/commit/0e8322f1398c950eb7aa0e869495f1c889909820))
+* **poetry:** moved to poetry and make targets for ci/cd ([dab7dc1](https://github.com/donhector/ansible-collection-workstation/commit/dab7dc14e475cea5263617f783c7a8fd2eb0e168))
+
 ### [1.1.2](https://github.com/donhector/ansible-collection-workstation/compare/v1.1.1...v1.1.2) (2022-03-12)
 
 
