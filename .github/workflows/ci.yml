@@ -40,6 +40,12 @@ jobs:
         with:
           python-version: "3.9"
 
+      - name: Install poetry
+        run: |
+          pip -V
+          python -m pip install --upgrade poetry
+          poetry -V
+
       - name: Cache poetry
         id: cache-poetry
         uses: actions/cache@v3
@@ -51,9 +57,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-poetry-
 
-      - name: Install deps
+      - name: Install all dependencies
         if: steps.cache-poetry.outputs.cache-hit != 'true'
-        run: make install
+        run: |
+          poetry install
 
       - name: Security checks
         run: make security
