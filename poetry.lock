@@ -175,11 +175,11 @@ python-versions = ">=3.6.1"
 
 [[package]]
 name = "chardet"
-version = "4.0.0"
-description = "Universal encoding detector for Python 2 and 3"
+version = "5.0.0"
+description = "Universal encoding detector for Python 3"
 category = "dev"
 optional = false
-python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+python-versions = ">=3.6"
 
 [[package]]
 name = "charset-normalizer"
@@ -227,7 +227,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "commitizen"
-version = "2.28.0"
+version = "2.29.0"
 description = "Python commitizen client tool"
 category = "dev"
 optional = false
@@ -235,6 +235,7 @@ python-versions = ">=3.6.2,<4.0.0"
 
 [package.dependencies]
 argcomplete = ">=1.12.1,<2.0.0"
+chardet = ">=5.0.0,<6.0.0"
 colorama = ">=0.4.1,<0.5.0"
 decli = ">=0.5.2,<0.6.0"
 jinja2 = ">=2.10.3"
@@ -999,7 +1000,7 @@ pyyaml = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "6c6e2a993cb87999ce3c200fdee460a68ce249fb80760bb9a3e37503f425d9b2"
+content-hash = "fb664d3265fe1bc174c4b169585300cd49baf339231bd10167f625b750fde711"
 
 [metadata.files]
 ansible = [
@@ -1106,8 +1107,8 @@ cfgv = [
     {file = "cfgv-3.3.1.tar.gz", hash = "sha256:f5a830efb9ce7a445376bb66ec94c638a9787422f96264c98edc6bdeed8ab736"},
 ]
 chardet = [
-    {file = "chardet-4.0.0-py2.py3-none-any.whl", hash = "sha256:f864054d66fd9118f2e67044ac8981a54775ec5b67aed0441892edb553d21da5"},
-    {file = "chardet-4.0.0.tar.gz", hash = "sha256:0d6f53a15db4120f2b08c94f11e7d93d2c911ee118b6b30a04ec3ee8310179fa"},
+    {file = "chardet-5.0.0-py3-none-any.whl", hash = "sha256:d3e64f022d254183001eccc5db4040520c0f23b1a3f33d6413e099eb7f126557"},
+    {file = "chardet-5.0.0.tar.gz", hash = "sha256:0368df2bfd78b5fc20572bb4e9bb7fb53e2c094f60ae9993339e8671d0afb8aa"},
 ]
 charset-normalizer = [
     {file = "charset-normalizer-2.0.12.tar.gz", hash = "sha256:2857e29ff0d34db842cd7ca3230549d1a697f96ee6d3fb071cfa6c7393832597"},
@@ -1126,8 +1127,8 @@ colorama = [
     {file = "colorama-0.4.4.tar.gz", hash = "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b"},
 ]
 commitizen = [
-    {file = "commitizen-2.28.0-py3-none-any.whl", hash = "sha256:d222f68da12a3ebcaf85c270f19eec7caacbe904349f1823deca6b5e7c2fc0f5"},
-    {file = "commitizen-2.28.0.tar.gz", hash = "sha256:8510b67e4c45131ef75114aeca5fe30b4f973b2b943457cf1667177af296192e"},
+    {file = "commitizen-2.29.0-py3-none-any.whl", hash = "sha256:03d97b0689a130298933e4dbaa9e6601c2b1bed2ec416deac0e7110354d48f0b"},
+    {file = "commitizen-2.29.0.tar.gz", hash = "sha256:a689d87b648d3914d9dab78d9534f3c65d799a4ff527099bedbcb57262328a17"},
 ]
 commonmark = [
     {file = "commonmark-0.9.1-py2.py3-none-any.whl", hash = "sha256:da2f38c92590f83de410ba1a3cbceafbc74fee9def35f9251ba9a971d6d66fd9"},
