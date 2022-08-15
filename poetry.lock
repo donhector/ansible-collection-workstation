@@ -59,10 +59,10 @@ tenacity = "*"
 wcmatch = ">=7.0"
 
 [package.extras]
-community = ["ansible (>=2.10)"]
-core = ["ansible-core (>=2.11.4)"]
-test = ["coverage (>=6.2,<6.3)", "tomli (>=1.2.3,<2.0.0)", "flaky (>=3.7.0)", "pytest (>=6.0.1)", "pytest-cov (>=2.10.1)", "pytest-xdist (>=2.1.0)", "psutil"]
 yamllint = ["yamllint (>=1.25.0)"]
+test = ["psutil", "pytest-xdist (>=2.1.0)", "pytest-cov (>=2.10.1)", "pytest (>=6.0.1)", "flaky (>=3.7.0)", "tomli (>=1.2.3,<2.0.0)", "coverage (>=6.2,<6.3)"]
+core = ["ansible-core (>=2.11.4)"]
+community = ["ansible (>=2.10)"]
 
 [[package]]
 name = "argcomplete"
@@ -73,7 +73,7 @@ optional = false
 python-versions = "*"
 
 [package.extras]
-test = ["coverage", "flake8", "pexpect", "wheel"]
+test = ["wheel", "pexpect", "flake8", "coverage"]
 
 [[package]]
 name = "arrow"
@@ -95,10 +95,10 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [package.extras]
-dev = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope.interface", "furo", "sphinx", "sphinx-notfound-page", "pre-commit", "cloudpickle"]
-docs = ["furo", "sphinx", "zope.interface", "sphinx-notfound-page"]
-tests = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "zope.interface", "cloudpickle"]
-tests_no_zope = ["coverage[toml] (>=5.0.2)", "hypothesis", "pympler", "pytest (>=4.3.0)", "six", "mypy", "pytest-mypy-plugins", "cloudpickle"]
+tests_no_zope = ["cloudpickle", "pytest-mypy-plugins", "mypy", "six", "pytest (>=4.3.0)", "pympler", "hypothesis", "coverage[toml] (>=5.0.2)"]
+tests = ["cloudpickle", "zope.interface", "pytest-mypy-plugins", "mypy", "six", "pytest (>=4.3.0)", "pympler", "hypothesis", "coverage[toml] (>=5.0.2)"]
+docs = ["sphinx-notfound-page", "zope.interface", "sphinx", "furo"]
+dev = ["cloudpickle", "pre-commit", "sphinx-notfound-page", "sphinx", "furo", "zope.interface", "pytest-mypy-plugins", "mypy", "six", "pytest (>=4.3.0)", "pympler", "hypothesis", "coverage[toml] (>=5.0.2)"]
 
 [[package]]
 name = "bandit"
@@ -115,9 +115,9 @@ PyYAML = ">=5.3.1"
 stevedore = ">=1.20.0"
 
 [package.extras]
-test = ["coverage (>=4.5.4)", "fixtures (>=3.0.0)", "flake8 (>=4.0.0)", "stestr (>=2.5.0)", "testscenarios (>=0.5.0)", "testtools (>=2.3.0)", "toml", "beautifulsoup4 (>=4.8.0)", "pylint (==1.9.4)"]
-toml = ["toml"]
 yaml = ["pyyaml"]
+toml = ["toml"]
+test = ["pylint (==1.9.4)", "beautifulsoup4 (>=4.8.0)", "toml", "testtools (>=2.3.0)", "testscenarios (>=0.5.0)", "stestr (>=2.5.0)", "flake8 (>=4.0.0)", "fixtures (>=3.0.0)", "coverage (>=4.5.4)"]
 
 [[package]]
 name = "binaryornot"
@@ -227,7 +227,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
 name = "commitizen"
-version = "2.29.5"
+version = "2.31.0"
 description = "Python commitizen client tool"
 category = "dev"
 optional = false
@@ -331,8 +331,8 @@ requests = ">=2.14.2,<2.18.0 || >2.18.0"
 websocket-client = ">=0.32.0"
 
 [package.extras]
+tls = ["idna (>=2.0.0)", "cryptography (>=3.4.7)", "pyOpenSSL (>=17.5.0)"]
 ssh = ["paramiko (>=2.4.2)"]
-tls = ["pyOpenSSL (>=17.5.0)", "cryptography (>=3.4.7)", "idna (>=2.0.0)"]
 
 [[package]]
 name = "dparse"
@@ -362,7 +362,7 @@ python-versions = ">=3.6"
 rich = ">=9.5.1"
 
 [package.extras]
-test = ["mock (>=3.0.5)", "pytest-cov (>=2.7.1)", "pytest-mock (>=3.3.1)", "pytest-plus", "pytest-xdist (>=1.29.0)", "pytest (>=5.4.0)"]
+test = ["pytest (>=5.4.0)", "pytest-xdist (>=1.29.0)", "pytest-plus", "pytest-mock (>=3.3.1)", "pytest-cov (>=2.7.1)", "mock (>=3.0.5)"]
 
 [[package]]
 name = "filelock"
@@ -373,8 +373,8 @@ optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-docs = ["furo (>=2021.8.17b43)", "sphinx (>=4.1)", "sphinx-autodoc-typehints (>=1.12)"]
-testing = ["covdefaults (>=1.2.0)", "coverage (>=4)", "pytest (>=4)", "pytest-cov", "pytest-timeout (>=1.4.2)"]
+testing = ["pytest-timeout (>=1.4.2)", "pytest-cov", "pytest (>=4)", "coverage (>=4)", "covdefaults (>=1.2.0)"]
+docs = ["sphinx-autodoc-typehints (>=1.12)", "sphinx (>=4.1)", "furo (>=2021.8.17b43)"]
 
 [[package]]
 name = "gitdb"
@@ -421,7 +421,7 @@ sh = [
 ]
 
 [package.extras]
-trusted-deps = ["Click (==8.0.3)", "arrow (==1.2.1)", "sh (==1.14.2)"]
+trusted-deps = ["sh (==1.14.2)", "arrow (==1.2.1)", "Click (==8.0.3)"]
 
 [[package]]
 name = "gitpython"
@@ -492,8 +492,8 @@ attrs = ">=17.4.0"
 pyrsistent = ">=0.14.0,<0.17.0 || >0.17.0,<0.17.1 || >0.17.1,<0.17.2 || >0.17.2"
 
 [package.extras]
-format = ["fqdn", "idna", "isoduration", "jsonpointer (>1.13)", "rfc3339-validator", "rfc3987", "uri-template", "webcolors (>=1.11)"]
-format-nongpl = ["fqdn", "idna", "isoduration", "jsonpointer (>1.13)", "rfc3339-validator", "rfc3986-validator (>0.1.0)", "uri-template", "webcolors (>=1.11)"]
+format-nongpl = ["webcolors (>=1.11)", "uri-template", "rfc3986-validator (>0.1.0)", "rfc3339-validator", "jsonpointer (>1.13)", "isoduration", "idna", "fqdn"]
+format = ["webcolors (>=1.11)", "uri-template", "rfc3987", "rfc3339-validator", "jsonpointer (>1.13)", "isoduration", "idna", "fqdn"]
 
 [[package]]
 name = "markupsafe"
@@ -526,12 +526,12 @@ PyYAML = ">=5.1"
 rich = ">=9.5.1"
 
 [package.extras]
-docker = ["molecule-docker (>=1.0.0)"]
-docs = ["ansible-core (>=2.12.0)", "jinja2 (<3.2.0)", "Sphinx (>=5.0.0,<6.0.0)", "simplejson (>=3.17.2)", "sphinx-ansible-theme (>=0.8.0,<0.10.0)", "sphinx-notfound-page (>=0.7.1)"]
-lint = ["flake8 (>=3.8.4)", "pre-commit (>=2.10.1)", "yamllint"]
-podman = ["molecule-podman (>=1.0.1)"]
-test = ["ansi2html (>=1.6.0)", "coverage (>=6.2)", "filelock", "pexpect (>=4.8.0,<5)", "pytest-cov (>=2.10.1)", "pytest-html (>=3.0.0)", "pytest-mock (>=3.3.1)", "pytest-plus (>=0.2)", "pytest-testinfra (>=6.1.0)", "pytest-xdist (>=2.1.0)", "pytest (>=6.1.2)"]
 windows = ["pywinrm"]
+test = ["pytest (>=6.1.2)", "pytest-xdist (>=2.1.0)", "pytest-testinfra (>=6.1.0)", "pytest-plus (>=0.2)", "pytest-mock (>=3.3.1)", "pytest-html (>=3.0.0)", "pytest-cov (>=2.10.1)", "pexpect (>=4.8.0,<5)", "filelock", "coverage (>=6.2)", "ansi2html (>=1.6.0)"]
+podman = ["molecule-podman (>=1.0.1)"]
+lint = ["yamllint", "pre-commit (>=2.10.1)", "flake8 (>=3.8.4)"]
+docs = ["sphinx-notfound-page (>=0.7.1)", "sphinx-ansible-theme (>=0.8.0,<0.10.0)", "simplejson (>=3.17.2)", "Sphinx (>=5.0.0,<6.0.0)", "jinja2 (<3.2.0)", "ansible-core (>=2.12.0)"]
+docker = ["molecule-docker (>=1.0.0)"]
 
 [[package]]
 name = "molecule-docker"
@@ -597,8 +597,8 @@ optional = false
 python-versions = ">=3.7"
 
 [package.extras]
-docs = ["Sphinx (>=4)", "furo (>=2021.7.5b38)", "proselint (>=0.10.2)", "sphinx-autodoc-typehints (>=1.12)"]
-test = ["appdirs (==1.4.4)", "pytest (>=6)", "pytest-cov (>=2.7)", "pytest-mock (>=3.6)"]
+test = ["pytest-mock (>=3.6)", "pytest-cov (>=2.7)", "pytest (>=6)", "appdirs (==1.4.4)"]
+docs = ["sphinx-autodoc-typehints (>=1.12)", "proselint (>=0.10.2)", "furo (>=2021.7.5b38)", "Sphinx (>=4)"]
 
 [[package]]
 name = "pluggy"
@@ -664,7 +664,7 @@ optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-diagrams = ["jinja2", "railroad-diagrams"]
+diagrams = ["railroad-diagrams", "jinja2"]
 
 [[package]]
 name = "pyrsistent"
@@ -727,7 +727,7 @@ python-versions = ">=3.6,<4.0"
 prompt_toolkit = ">=2.0,<4.0"
 
 [package.extras]
-docs = ["Sphinx (>=3.3,<4.0)", "sphinx-rtd-theme (>=0.5.0,<0.6.0)", "sphinx-autobuild (>=2020.9.1,<2021.0.0)", "sphinx-copybutton (>=0.3.1,<0.4.0)", "sphinx-autodoc-typehints (>=1.11.1,<2.0.0)"]
+docs = ["sphinx-autodoc-typehints (>=1.11.1,<2.0.0)", "sphinx-copybutton (>=0.3.1,<0.4.0)", "sphinx-autobuild (>=2020.9.1,<2021.0.0)", "sphinx-rtd-theme (>=0.5.0,<0.6.0)", "Sphinx (>=3.3,<4.0)"]
 
 [[package]]
 name = "requests"
@@ -744,8 +744,8 @@ idna = ">=2.5,<4"
 urllib3 = ">=1.21.1,<1.27"
 
 [package.extras]
-socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use_chardet_on_py3 = ["chardet (>=3.0.2,<6)"]
+socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 
 [[package]]
 name = "resolvelib"
@@ -880,7 +880,7 @@ optional = false
 python-versions = ">=3.6"
 
 [package.extras]
-doc = ["reno", "sphinx", "tornado (>=4.5)"]
+doc = ["tornado (>=4.5)", "sphinx", "reno"]
 
 [[package]]
 name = "termcolor"
@@ -931,9 +931,9 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
 
 [package.extras]
-brotli = ["brotlicffi (>=0.8.0)", "brotli (>=1.0.9)", "brotlipy (>=0.6.0)"]
-secure = ["pyOpenSSL (>=0.14)", "cryptography (>=1.3.4)", "idna (>=2.0.0)", "certifi", "ipaddress"]
 socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
+secure = ["ipaddress", "certifi", "idna (>=2.0.0)", "cryptography (>=1.3.4)", "pyOpenSSL (>=0.14)"]
+brotli = ["brotlipy (>=0.6.0)", "brotli (>=1.0.9)", "brotlicffi (>=0.8.0)"]
 
 [[package]]
 name = "virtualenv"
@@ -950,8 +950,8 @@ platformdirs = ">=2,<3"
 six = ">=1.9.0,<2"
 
 [package.extras]
-docs = ["proselint (>=0.10.2)", "sphinx (>=3)", "sphinx-argparse (>=0.2.5)", "sphinx-rtd-theme (>=0.4.3)", "towncrier (>=21.3)"]
-testing = ["coverage (>=4)", "coverage-enable-subprocess (>=1)", "flaky (>=3)", "pytest (>=4)", "pytest-env (>=0.6.2)", "pytest-freezegun (>=0.4.1)", "pytest-mock (>=2)", "pytest-randomly (>=1)", "pytest-timeout (>=1)", "packaging (>=20.0)"]
+testing = ["packaging (>=20.0)", "pytest-timeout (>=1)", "pytest-randomly (>=1)", "pytest-mock (>=2)", "pytest-freezegun (>=0.4.1)", "pytest-env (>=0.6.2)", "pytest (>=4)", "flaky (>=3)", "coverage-enable-subprocess (>=1)", "coverage (>=4)"]
+docs = ["towncrier (>=21.3)", "sphinx-rtd-theme (>=0.4.3)", "sphinx-argparse (>=0.2.5)", "sphinx (>=3)", "proselint (>=0.10.2)"]
 
 [[package]]
 name = "wcmatch"
@@ -1000,7 +1000,7 @@ pyyaml = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "12948eb832f0048768adbf2d4de026e7b88a600f4831722bc68a40221d19edd4"
+content-hash = "d3bacdd1df07168f875ba6606a371235a4a31fa3f5a24b874f390f0b54ba410a"
 
 [metadata.files]
 ansible = [
@@ -1127,8 +1127,8 @@ colorama = [
     {file = "colorama-0.4.4.tar.gz", hash = "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b"},
 ]
 commitizen = [
-    {file = "commitizen-2.29.5-py3-none-any.whl", hash = "sha256:07f1708232dd14a839af82df62fcd53e0adb5b807cc55f4faab6c86b9a63ef12"},
-    {file = "commitizen-2.29.5.tar.gz", hash = "sha256:a6ab0b9f6cffbc49b2a4d2b940cbcc1715a9373f04604653a64677ef20a6ba7f"},
+    {file = "commitizen-2.31.0-py3-none-any.whl", hash = "sha256:f0c1ddb5d45ccdbf2584844dbcf0c7fa68d21941de6b5206377bb6d418699e73"},
+    {file = "commitizen-2.31.0.tar.gz", hash = "sha256:a326874c88748d37e28ed75e2f01eb42e72de99c1d951ac20d8ddd94bd3762d4"},
 ]
 commonmark = [
     {file = "commonmark-0.9.1-py2.py3-none-any.whl", hash = "sha256:da2f38c92590f83de410ba1a3cbceafbc74fee9def35f9251ba9a971d6d66fd9"},
