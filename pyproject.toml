@@ -19,7 +19,7 @@ yamllint = "^1.28.0"
 pre-commit = "^2.20.0"
 commitizen = "^2.37.1"
 gitlint = "^0.18.0"
-safety = "^2.3.2"
+safety = "^2.3.3"
 bandit = "^1.7.4"
 
 [build-system]
