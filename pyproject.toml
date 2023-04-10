@@ -10,7 +10,7 @@ repository = "https://github.com/donhector/ansible-collection-workstation"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-ansible = "^7.0.0"
+ansible = "^7.4.0"
 
 [tool.poetry.dev-dependencies]
 molecule = {extras = ["docker"], version = "^4.0.3"}
