@@ -17,7 +17,7 @@ molecule = {extras = ["docker"], version = "^4.0.3"}
 ansible-lint = "^5.4.0"
 yamllint = "^1.28.0"
 pre-commit = "^2.20.0"
-commitizen = "^2.37.1"
+commitizen = "^3.0.1"
 gitlint = "^0.18.0"
 safety = "^2.3.2"
 bandit = "^1.7.4"
