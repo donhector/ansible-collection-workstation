@@ -48,7 +48,7 @@ jobs:
 
       - name: Cache poetry
         id: cache-poetry
-        uses: actions/cache@v3
+        uses: actions/cache@v6
         with:
           path: |
             .venv
